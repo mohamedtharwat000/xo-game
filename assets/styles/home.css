@@ -139,7 +139,7 @@ header nav ul li a:hover {
     color: #000428;
 }
 
-@media (max-width: 522px) {
+@media (max-width: 539px) {
     header {
         flex-direction: column;
     }
@@ -153,8 +153,12 @@ header nav ul li a:hover {
         padding-top: 1.2rem;
     }
 
-    header nav ul li {
-        font-size: 0.7rem;
+    header nav ul li a {
+        display: none;
+    }
+
+    header nav ul li .icon a {
+        display: block;
     }
 }
 
@@ -179,7 +183,7 @@ main .home {
     align-items: center;
     justify-content: space-evenly;
     background-color: #1f5dbf;
-    min-height: 82vh;
+    min-height: 100vh;
     padding: 0 0 2rem 0;
 }
 
@@ -260,7 +264,7 @@ main .home .menu a:hover {
     }
 }
 
-@media (max-width: 305px) {
+@media (max-width: 302px) {
     main .home .text {
         font-size: 7rem;
         margin-right: 3rem;
@@ -273,4 +277,25 @@ main .home .menu a:hover {
     main .home .menu a {
         font-size: 0.8rem;
     }
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 1rem 0;
+    background-color: dodgerblue;
+    color: #fff;
+}
+
+footer p {
+    max-width: 90%;
+    margin: auto;
+    font-size: 0.8rem;
+}
+
+footer span {
+    color: red;
 }
