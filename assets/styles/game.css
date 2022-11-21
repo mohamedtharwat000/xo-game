@@ -116,3 +116,40 @@ h1 {
 .popup.hide {
   display: none;
 }
+
+/* for responsive */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 90vmin;
+    height: 90vmin;
+  }
+  .button-option {
+    height: 30vmin;
+    width: 30vmin;
+    font-size: 16vmin;
+  }
+  #restart {
+    font-size: 1.5em;
+  }
+  .popup {
+    font-size: 16vmin;
+  }
+  #message {
+    font-size: 1.2em;
+  }
+}
+
+/* @media screen and (max-width: 600px) {
+  .container {
+    width: 90vmin;
+    height: 90vmin;
+  }
+  .button-option {
+    height: 15vmin;
+    width: 15vmin;
+    font-size: 8vmin;
+  }
+  .popup {
+    font-size: 8vmin;
+  }
+} */
