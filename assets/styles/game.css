@@ -72,3 +72,25 @@ h1 {
   display: block;
   cursor: pointer;
 }
+
+/* styles of the popup that will appear when game is over */
+.popup {
+  background: linear-gradient(
+    to right,
+    #04214b,
+    #003170,
+    #004298,
+    #0054c1,
+    #1265eb
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 12vmin;
+}
