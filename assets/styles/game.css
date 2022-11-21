@@ -120,8 +120,6 @@ h1 {
 /* for responsive */
 @media screen and (max-width: 600px) {
   .button-option {
-    /* height: 10vmin;
-    width: 10vmin; */
     font-size: 16vmin;
   }
 
