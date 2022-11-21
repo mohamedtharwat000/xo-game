@@ -1,9 +1,48 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    position: relative;
-    border: none;
-    outline: none;
-    font-family: sans-serif;
+/* that for all the page */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  border: none;
+  outline: none;
+  font-family: "Raleway", sans-serif;
+}
+
+/* that for the body */
+body {
+  height: 100vh;
+  background: linear-gradient(
+    to right,
+    #04214b,
+    #003170,
+    #004298,
+    #0054c1,
+    #1265eb
+  );
+}
+
+/* that for the h1 GamePage */
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin: 1%;
+}
+
+/* that for the div wrapper that contain the container and the reset button */
+.wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+/* the styles of the container  */
+.container {
+  width: 70vmin;
+  height: 70vmin;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vmin;
 }
