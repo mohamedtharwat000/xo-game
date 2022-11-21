@@ -46,3 +46,29 @@ h1 {
   flex-wrap: wrap;
   gap: 2vmin;
 }
+
+/* styles of the buttons inside the container that will be xo later */
+.button-option {
+  background: #ffffff;
+  height: 22vmin;
+  width: 22vmin;
+  border: none;
+  border-radius: 8px;
+  font-size: 12vmin;
+  color: #d161ff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* styles of the reset button */
+#restart {
+  font-size: 1.3em;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: #0a0027;
+  color: #ffffff;
+  border: none;
+  position: relative;
+  margin: 1.5em auto 0 auto;
+  display: block;
+  cursor: pointer;
+}
