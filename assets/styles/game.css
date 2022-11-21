@@ -27,7 +27,7 @@ h1 {
   font-size: 2rem;
   color: #fff;
   text-align: center;
-  margin: 1%;
+  margin-top: 1rem;
 }
 
 /* that for the div wrapper that contain the container and the reset button */
@@ -119,14 +119,15 @@ h1 {
 
 /* for responsive */
 @media screen and (max-width: 600px) {
-  .container {
-    width: 90vmin;
-    height: 90vmin;
-  }
   .button-option {
-    height: 30vmin;
-    width: 30vmin;
+    /* height: 10vmin;
+    width: 10vmin; */
     font-size: 16vmin;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-top: 5rem;
   }
   #restart {
     font-size: 1.5em;
@@ -138,18 +139,3 @@ h1 {
     font-size: 1.2em;
   }
 }
-
-/* @media screen and (max-width: 600px) {
-  .container {
-    width: 90vmin;
-    height: 90vmin;
-  }
-  .button-option {
-    height: 15vmin;
-    width: 15vmin;
-    font-size: 8vmin;
-  }
-  .popup {
-    font-size: 8vmin;
-  }
-} */
