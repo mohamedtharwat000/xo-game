@@ -7,3 +7,204 @@
     outline: none;
     font-family: sans-serif;
 }
+
+:root{
+    --color-1: #0077B6;
+    --color-2: #0096C7;
+    --color-total: #dbd5b299;
+    --color-wins: #1bc44b99;
+    --color-losses: #d6493399;
+    --color-draws: #33333399;
+    --color-rate: #3f37c999;
+}
+
+main {
+    background-color: var(--color-1);
+    display: flex;
+    flex-direction: column;
+    padding-block: 5vh;
+    padding-inline: 5vw;
+}
+
+main > * {
+    min-height: 90vh; /* test value befor adding header (100vh - padding - header) */
+}
+
+main > h1, h2 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+}
+
+.profile, .profile-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-user > figure {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-user > figure > * {
+    flex: 1;
+    white-space: nowrap;
+}
+
+.profile-user > figure > .user-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    margin: auto;
+}
+
+.user-pic img {
+    mix-blend-mode: multiply;
+    max-width: 100%;
+    width: 200px; /*for testing*/
+}
+
+.profile-control {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-control > button {
+    border-radius: 5px;
+    background-color: var(--color-2);
+    padding: 20px;
+    cursor: pointer;
+}
+
+.profile-control > button > span {
+    display: inline-block;
+    position: relative;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    transition: 0.5s;
+}
+
+.profile-control > button > span:after {
+    content: '\00bb';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.profile-control > button:hover > span {
+    padding-right: 20px;
+}
+
+.profile-control > button:hover > span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.profile-statistics, .statistics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.statistics-container {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.statistics-container > div {
+    padding: 10px;
+}
+
+.statistics-container > div > span {
+    padding-inline: 20px;
+}
+
+.count-total {
+    background-color: var(--color-total);
+}
+
+.count-wins, .win {
+    background-color: var(--color-wins);
+}
+
+.count-losses, .lose {
+    background-color: var(--color-losses);
+}
+
+.count-draws, .draw {
+    background-color: var(--color-draws);
+}
+
+.count-rate {
+    background-color: var(--color-rate);
+}
+
+.statistics-container > *:hover, .history-list > *:hover {
+    box-shadow: 0 0 2px 2px #000;
+}
+
+.history, .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.history-list > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.history-list > div::before {
+    content: attr(class);
+}
+
+.history-list time::after {
+    content: attr(datetime);
+}
+
+@media (min-width: 768px) {
+    main > h1, h2 {
+        text-align: initial;
+    }
+
+    .profile-user {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 20px;
+    }
+
+    .profile-user > * {
+        flex: 1;
+    }
+
+    .profile-user > figure {
+        flex-direction: row;
+    }
+
+    .profile-user > figure > figcaption {
+        align-self: center;
+    }
+
+    .profile-user > figure > figcaption > h2 {
+        padding: 20px;
+    }
+
+    .profile-user > .profile-control {
+        flex-direction: row;
+        align-items: center;
+        justify-content: end;
+        flex-wrap: wrap;
+    }
+
+    .profile-user > .profile-control > button {
+        flex: 0 0 200px;
+    }
+}

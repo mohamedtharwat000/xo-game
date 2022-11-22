@@ -4,11 +4,48 @@
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Document</title>
-    <link rel='stylesheet' href='./style.css'>
+    <title>Profile</title>
+    <link rel='stylesheet' href='../assets/styles/profile.css'>
+    <script defer src='../assets/scripts/profile.js'></script>
 </head>
 <body>
-    <h1>PROFILE PAGE</h1>
+    <header></header>
+    <main>
+        <section class="profile">
+            <section class="profile-user">
+                <figure>
+                    <div class="user-pic">
+                        <img src="https://xoonlinebucket.s3.amazonaws.com/images/test0_test0ProfilePic.jpeg" alt="user pic">
+                    </div>
+                    <figcaption><h2>User Name</h2></figcaption>
+                </figure>
+                <div class="profile-control">
+                    <button><span>Edit Profile</span></button>
+                    <button><span>Reset Profile</span></button>
+                </div>
+            </section>
+            <section class="profile-statistics">
+                <h2>Profile Statistics</h2>
+                <div class="statistics-container">
+                    <div class="count-total">total<span>0</span></div>
+                    <div class="count-wins">wins<span>0</span></div>
+                    <div class="count-losses">losses<span>0</span></div>
+                    <div class="count-draws">draws<span>0</span></div>
+                    <div class="count-rate">win rate<span>0</span>%</div>
+                </div>
+            </section>
+        </section>
+        <section class="history">
+            <h2>Recent Games</h2>
+            <div class="history-list">
+                <div class="win"><time datetime="2022-11-22 9:30"></time></div>
+                <div class="lose"><time datetime="2022-11-22 9:30"></time></div>
+                <div class="draw"><time datetime="2022-11-22 9:30"></time></div>
+                <div class="lose"><time datetime="2022-11-22 9:30"></time></div>
+                <div class="win"><time datetime="2022-11-22 9:30"></time></div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
 </body>
-<script src='./script.js'></script>
 </html>
