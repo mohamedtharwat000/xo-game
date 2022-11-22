@@ -1,9 +1,139 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    position: relative;
-    border: none;
-    outline: none;
-    font-family: sans-serif;
+/* that for all the page */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  border: none;
+  outline: none;
+  font-family: "Raleway", sans-serif;
+}
+
+/* that for the body */
+body {
+  height: 100vh;
+  background: linear-gradient(
+    to right,
+    #04214b,
+    #003170,
+    #004298,
+    #0054c1,
+    #1265eb
+  );
+}
+
+/* that for the h1 GamePage */
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* that for the div wrapper that contain the container and the reset button */
+.wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+/* the styles of the container  */
+.container {
+  width: 70vmin;
+  height: 70vmin;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vmin;
+}
+
+/* styles of the buttons inside the container that will be xo later */
+.button-option {
+  background: #ffffff;
+  height: 22vmin;
+  width: 22vmin;
+  border: none;
+  border-radius: 8px;
+  font-size: 12vmin;
+  color: #d161ff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* styles of the reset button */
+#restart {
+  font-size: 1.3em;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: #0a0027;
+  color: #ffffff;
+  border: none;
+  position: relative;
+  margin: 1.5em auto 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+/* styles of the popup that will appear when game is over */
+.popup {
+  background: linear-gradient(
+    to right,
+    #04214b,
+    #003170,
+    #004298,
+    #0054c1,
+    #1265eb
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 12vmin;
+}
+
+/* styles of the newgame button */
+#new-game {
+  font-size: 0.6em;
+  padding: 0.5em 1em;
+  background-color: #0a0027;
+  color: #ffffff;
+  border-radius: 0.2em;
+  border: none;
+  cursor: pointer;
+}
+
+/* msg of win or lose styles */
+#message {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1em;
+}
+
+.popup.hide {
+  display: none;
+}
+
+/* for responsive */
+@media screen and (max-width: 600px) {
+  .button-option {
+    font-size: 16vmin;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-top: 5rem;
+  }
+  #restart {
+    font-size: 1.5em;
+  }
+  .popup {
+    font-size: 16vmin;
+  }
+  #message {
+    font-size: 1.2em;
+  }
 }
