@@ -101,12 +101,11 @@ main > h1, h2 {
 }
 
 .profile-control > button:hover > span {
-    padding-right: 20px;
+    margin-left: -20px;
 }
 
 .profile-control > button:hover > span:after {
     opacity: 1;
-    right: 0;
 }
 
 .profile-statistics, .statistics-container {

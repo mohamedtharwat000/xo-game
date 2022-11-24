@@ -111,6 +111,11 @@ h1 {
   font-size: 1em;
 }
 
+.popup {
+  position: absolute;
+  inset: 0;
+}
+
 .popup.hide {
   display: none;
 }
