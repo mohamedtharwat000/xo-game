@@ -57,10 +57,18 @@
             <!-- reset button -->
             <button id="restart">Restart</button>
 
+            <!-- that appear to choose the O or X  -->
+            <div class="popup choose-letter">
+                <p id="message">Choose your Letter</p>
+                <div class="letter-buttons">
+                    <button class="letter-button">X</button>
+                    <button class="letter-button">O</button>
+                </div>
+            </div>
+
             <!-- that appear when lose or win to can play another game  -->
-            <div class="popup hide">
-                <!-- the message that appear when win or lose we can handle it with js -->
-                <p id="message"></p>
+            <div id="who-win" class="popup hide">
+                <p id="win-message"></p>
                 <button id="new-game">New Game</button>
             </div>
         </div>

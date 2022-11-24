@@ -94,7 +94,7 @@ h1 {
 }
 
 /* styles of the newgame button */
-#new-game {
+#new-game, .letter-button {
   font-size: 0.6em;
   padding: 0.5em 1em;
   background-color: #0a0027;
@@ -114,6 +114,11 @@ h1 {
 .popup {
   position: absolute;
   inset: 0;
+}
+
+.popup .letter-buttons {
+  display: flex;
+  gap: 20px;
 }
 
 .popup.hide {

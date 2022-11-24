@@ -1,8 +1,8 @@
+// get choose letter buttons
+const chooseLetter = document.getElementsByClassName('letter-button');
+
 // get the board buttons
 const buttons = document.getElementsByClassName('button-option');
-
-// get popup message element
-const popup = document.getElementsByClassName('popup')[0];
 
 // get restart button element
 const restartBtn = document.getElementById('restart');
@@ -10,6 +10,8 @@ const restartBtn = document.getElementById('restart');
 // get new game button element
 const newGameBtn = document.getElementById('new-game');
 
+// get popup message element
+const popup = document.getElementById('who-win');
 
 // global variables
 let value = 'X';
@@ -19,41 +21,51 @@ let xWin = false;
 let oWin = false;
 let draw = false;
 
-// create a rows and columns objects to hold values
+// player data
+const player = {letter: '', win: false}
+
+// rows and columns objects to hold values
 const rows = {row1: [], row2: [], row3: []};
 const columns = {column1: [], column2: [], column3: []};
+
+
+// start game logic ///////////////////////////////////////////////////////////
+
+// choose player letter function
+for(let letter of chooseLetter) {
+    letter.addEventListener('click', function() {
+        player.letter = letter.innerHTML
+        letter.parentElement.parentElement.classList.toggle('hide')
+    })
+}
 
 // add click event for every cell
 for(let button of buttons) {
     button.addEventListener('click', game);
 }
 
-// code to handle restart the game and reset all to initial values
-restart.addEventListener('click', restartFn);
-newGameBtn.addEventListener('click', restartFn);
-
 // main function with all game logic
 function game() {
-    clickCount += 1;
-
     _this = this
     _this.innerHTML = value;
     
+    clickCount++;
+
     rowsColumns()
     whoWin();
+    updatePlayerData()
     showPopup()
-
+    
     valueChange *= -1;
     valueChange === 1 ? value = 'X' : value = 'O';
-
-    if(xWin === true || oWin === true || draw === true) {
-        for(let button of buttons) {
-            button.removeEventListener('click', game);
-        }
-    }
-
+    
     _this.removeEventListener('click', game);
 }
+
+// code to handle restart the game and reset all to initial values
+restartBtn.addEventListener('click', restartFn);
+newGameBtn.addEventListener('click', restartFn);
+
 
 // restart function
 function restartFn() {
@@ -75,54 +87,16 @@ function restartFn() {
         columns.column2 = [];
         columns.column3 = [];
 
-        popup.classList.toggle('hide')
+        player.letter = '';
+        player.win = false;
+
+        if(!popup.classList.contains('hide')) {
+            popup.classList.toggle('hide');
+        }
     }
 }
 
-// show popup message function
-function showPopup() {
-    if(draw === true) {
-        popup.classList.toggle('hide')
-        document.getElementById('message').innerHTML = 'draw';
-    } else if(xWin === true) {
-        popup.classList.toggle('hide')
-        document.getElementById('message').innerHTML = 'X wins';
-    } else if(oWin === true) {
-        popup.classList.toggle('hide')
-        document.getElementById('message').innerHTML = 'O wins';
-    }
-
-
-}
-
-// this function to know who win X or O or it is a draw
-function whoWin() {
-    if(clickCount === 9) {
-        draw = true;
-    } else if(
-        (rows.row1[0] === 'X' && rows.row1[1] === 'X' && rows.row1[2] === 'X') ||
-        (rows.row2[0] === 'X' && rows.row2[1] === 'X' && rows.row2[2] === 'X') ||
-        (rows.row3[0] === 'X' && rows.row3[1] === 'X' && rows.row3[2] === 'X') ||
-        (columns.column1[0] === 'X' && columns.column1[1] === 'X' && columns.column1[2] === 'X') ||
-        (columns.column2[0] === 'X' && columns.column2[1] === 'X' && columns.column2[2] === 'X') ||
-        (columns.column3[0] === 'X' && columns.column3[1] === 'X' && columns.column3[2] === 'X') ||
-        (rows.row1[0] === 'X' && rows.row2[1] === 'X' && rows.row3[2] === 'X') ||
-        (rows.row1[2] === 'X' && rows.row2[1] === 'X' && rows.row3[0] === 'X')
-    ) {
-        xWin = true;
-    } else if(
-        (rows.row1[0] === 'O' && rows.row1[1] === 'O' && rows.row1[2] === 'O') ||
-        (rows.row2[0] === 'O' && rows.row2[1] === 'O' && rows.row2[2] === 'O') ||
-        (rows.row3[0] === 'O' && rows.row3[1] === 'O' && rows.row3[2] === 'O') ||
-        (columns.column1[0] === 'O' && columns.column1[1] === 'O' && columns.column1[2] === 'O') ||
-        (columns.column2[0] === 'O' && columns.column2[1] === 'O' && columns.column2[2] === 'O') ||
-        (columns.column3[0] === 'O' && columns.column3[1] === 'O' && columns.column3[2] === 'O') ||
-        (rows.row1[0] === 'O' && rows.row2[1] === 'O' && rows.row3[2] === 'O') ||
-        (rows.row1[2] === 'O' && rows.row2[1] === 'O' && rows.row3[0] === 'O')
-    ) {
-        oWin = true;
-    }
-}
+// helper function used in main function
 
 // this function add values to rows and columns object
 function rowsColumns() {
@@ -168,4 +142,60 @@ function rowsColumns() {
             columns.column3[2] = value;
             break;
     }
+}
+
+// this function to know who win X or O or it is a draw
+function whoWin() {
+    if(
+        (rows.row1[0] === 'X' && rows.row1[1] === 'X' && rows.row1[2] === 'X') ||
+        (rows.row2[0] === 'X' && rows.row2[1] === 'X' && rows.row2[2] === 'X') ||
+        (rows.row3[0] === 'X' && rows.row3[1] === 'X' && rows.row3[2] === 'X') ||
+        (columns.column1[0] === 'X' && columns.column1[1] === 'X' && columns.column1[2] === 'X') ||
+        (columns.column2[0] === 'X' && columns.column2[1] === 'X' && columns.column2[2] === 'X') ||
+        (columns.column3[0] === 'X' && columns.column3[1] === 'X' && columns.column3[2] === 'X') ||
+        (rows.row1[0] === 'X' && rows.row2[1] === 'X' && rows.row3[2] === 'X') ||
+        (rows.row1[2] === 'X' && rows.row2[1] === 'X' && rows.row3[0] === 'X')
+    ) {
+        xWin = true;
+    } else if(
+        (rows.row1[0] === 'O' && rows.row1[1] === 'O' && rows.row1[2] === 'O') ||
+        (rows.row2[0] === 'O' && rows.row2[1] === 'O' && rows.row2[2] === 'O') ||
+        (rows.row3[0] === 'O' && rows.row3[1] === 'O' && rows.row3[2] === 'O') ||
+        (columns.column1[0] === 'O' && columns.column1[1] === 'O' && columns.column1[2] === 'O') ||
+        (columns.column2[0] === 'O' && columns.column2[1] === 'O' && columns.column2[2] === 'O') ||
+        (columns.column3[0] === 'O' && columns.column3[1] === 'O' && columns.column3[2] === 'O') ||
+        (rows.row1[0] === 'O' && rows.row2[1] === 'O' && rows.row3[2] === 'O') ||
+        (rows.row1[2] === 'O' && rows.row2[1] === 'O' && rows.row3[0] === 'O')
+    ) {
+        oWin = true;
+    } else if(clickCount === 9) {
+        draw = true;
+    }
+}
+
+// update player object data
+function updatePlayerData() {
+    if(draw === true) {
+        player.win = 'draw';
+    } else if(xWin === true && player.letter === 'X') {
+        player.win = true;
+    } else if(oWin === true && player.letter === 'O') {
+        player.win = true;
+    }
+}
+
+// show popup message function
+function showPopup() {
+    if(draw === true || xWin === true || oWin === true) {
+
+        popup.classList.toggle('hide')
+
+        if(draw === true) {
+            document.getElementById('win-message').innerHTML = 'draw';
+        } else if(xWin === true) {
+            document.getElementById('win-message').innerHTML = 'X wins';
+        } else if(oWin === true) {
+            document.getElementById('win-message').innerHTML = 'O wins';
+        }
+    } 
 }
