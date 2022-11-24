@@ -45,13 +45,12 @@ for(let button of buttons) {
 }
 
 // main function with all game logic
-function game() {
-    _this = this
-    _this.innerHTML = value;
+function game(event) {
+    event.target.innerHTML = value;
     
     clickCount++;
 
-    rowsColumns()
+    rowsColumns(event.target)
     whoWin();
     updatePlayerData()
     showPopup()
@@ -59,7 +58,7 @@ function game() {
     valueChange *= -1;
     valueChange === 1 ? value = 'X' : value = 'O';
     
-    _this.removeEventListener('click', game);
+    event.target.removeEventListener('click', game);
 }
 
 // code to handle restart the game and reset all to initial values
@@ -94,8 +93,8 @@ function restartFn() {
             popup.classList.toggle('hide');
         }
 
-        if(chooseLetter[0].parentElement.parentElement.classList.toggle('hide')) {
-            popup.classList.toggle('hide');
+        if(chooseLetter[0].parentElement.parentElement.classList.contains('hide')) {
+            chooseLetter[0].parentElement.parentElement.classList.toggle('hide');
         }
     }
 }
@@ -103,10 +102,10 @@ function restartFn() {
 // helper function used in main function
 
 // this function add values to rows and columns object
-function rowsColumns() {
+function rowsColumns(target) {
 
-    const row = _this.dataset.row;
-    const column = _this.dataset.column;
+    const row = target.dataset.row;
+    const column = target.dataset.column;
 
     switch(true) {
         case (row === '1' && column === '1'):
