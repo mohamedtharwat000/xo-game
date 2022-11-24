@@ -93,6 +93,10 @@ function restartFn() {
         if(!popup.classList.contains('hide')) {
             popup.classList.toggle('hide');
         }
+
+        if(chooseLetter[0].parentElement.parentElement.classList.toggle('hide')) {
+            popup.classList.toggle('hide');
+        }
     }
 }
 
