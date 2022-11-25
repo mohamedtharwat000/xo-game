@@ -13,20 +13,22 @@ const newGameBtn = document.getElementById('new-game');
 // get popup message element
 const popup = document.getElementById('who-win');
 
+// player data
+const player = {letter: '', win: false}
+
+// board matrix
+const rows = {row1: [], row2: [], row3: []};
+const columns = {column1: [], column2: [], column3: []};
+const diagonals = {diagonal1: [], diagonal2: []};
+const matrix = {rows, columns, diagonals};
+
 // global variables
-let value = 'X';
+let value = player.letter === 'X' ? 'X' : player.letter === 'O' ? 'O' : 'X';
 let valueChange = 1;
 let clickCount = 0;
 let xWin = false;
 let oWin = false;
 let draw = false;
-
-// player data
-const player = {letter: '', win: false}
-
-// rows and columns objects to hold values
-const rows = {row1: [], row2: [], row3: []};
-const columns = {column1: [], column2: [], column3: []};
 
 
 // start game logic ///////////////////////////////////////////////////////////
@@ -47,17 +49,15 @@ for(let button of buttons) {
 // main function with all game logic
 function game(event) {
     event.target.innerHTML = value;
-    
     clickCount++;
 
-    rowsColumns(event.target)
-    whoWin();
-    updatePlayerData()
+    fillMatrix(event.target)
+    winner();
+    userData()
     showPopup()
     
     valueChange *= -1;
     valueChange === 1 ? value = 'X' : value = 'O';
-    
     event.target.removeEventListener('click', game);
 }
 
@@ -68,6 +68,7 @@ newGameBtn.addEventListener('click', restartFn);
 
 // restart function
 function restartFn() {
+    
     for(button of buttons) {
         button.innerHTML = '';
         button.addEventListener('click', game);
@@ -85,6 +86,8 @@ function restartFn() {
         columns.column1 = [];
         columns.column2 = [];
         columns.column3 = [];
+        diagonals.diagonal1 = [];
+        diagonals.diagonal2 = [];
 
         player.letter = '';
         player.win = false;
@@ -102,7 +105,7 @@ function restartFn() {
 // helper function used in main function
 
 // this function add values to rows and columns object
-function rowsColumns(target) {
+function fillMatrix(target) {
 
     const row = target.dataset.row;
     const column = target.dataset.column;
@@ -111,6 +114,7 @@ function rowsColumns(target) {
         case (row === '1' && column === '1'):
             rows.row1[0] = value;
             columns.column1[0] = value;
+            diagonals.diagonal1[0] = value;
             break;
         case (row === '1' && column === '2'):
             rows.row1[1] = value;
@@ -119,6 +123,7 @@ function rowsColumns(target) {
         case (row === '1' && column === '3'):
             rows.row1[2] = value;
             columns.column3[0] = value;
+            diagonals.diagonal2[0] = value;
             break;
         case (row === '2' && column === '1'):
             rows.row2[0] = value;
@@ -127,6 +132,8 @@ function rowsColumns(target) {
         case (row === '2' && column === '2'):
             rows.row2[1] = value;
             columns.column2[1] = value;
+            diagonals.diagonal1[1] = value;
+            diagonals.diagonal2[1] = value;
             break;
         case (row === '2' && column === '3'):
             rows.row2[2] = value;
@@ -135,6 +142,7 @@ function rowsColumns(target) {
         case (row === '3' && column === '1'):
             rows.row3[0] = value;
             columns.column1[2] = value;
+            diagonals.diagonal2[2] = value;
             break;
         case (row === '3' && column === '2'):
             rows.row3[1] = value;
@@ -143,41 +151,44 @@ function rowsColumns(target) {
         case (row === '3' && column === '3'):
             rows.row3[2] = value;
             columns.column3[2] = value;
+            diagonals.diagonal1[2] = value;
             break;
     }
 }
 
 // this function to know who win X or O or it is a draw
-function whoWin() {
-    if(
-        (rows.row1[0] === 'X' && rows.row1[1] === 'X' && rows.row1[2] === 'X') ||
-        (rows.row2[0] === 'X' && rows.row2[1] === 'X' && rows.row2[2] === 'X') ||
-        (rows.row3[0] === 'X' && rows.row3[1] === 'X' && rows.row3[2] === 'X') ||
-        (columns.column1[0] === 'X' && columns.column1[1] === 'X' && columns.column1[2] === 'X') ||
-        (columns.column2[0] === 'X' && columns.column2[1] === 'X' && columns.column2[2] === 'X') ||
-        (columns.column3[0] === 'X' && columns.column3[1] === 'X' && columns.column3[2] === 'X') ||
-        (rows.row1[0] === 'X' && rows.row2[1] === 'X' && rows.row3[2] === 'X') ||
-        (rows.row1[2] === 'X' && rows.row2[1] === 'X' && rows.row3[0] === 'X')
-    ) {
-        xWin = true;
-    } else if(
-        (rows.row1[0] === 'O' && rows.row1[1] === 'O' && rows.row1[2] === 'O') ||
-        (rows.row2[0] === 'O' && rows.row2[1] === 'O' && rows.row2[2] === 'O') ||
-        (rows.row3[0] === 'O' && rows.row3[1] === 'O' && rows.row3[2] === 'O') ||
-        (columns.column1[0] === 'O' && columns.column1[1] === 'O' && columns.column1[2] === 'O') ||
-        (columns.column2[0] === 'O' && columns.column2[1] === 'O' && columns.column2[2] === 'O') ||
-        (columns.column3[0] === 'O' && columns.column3[1] === 'O' && columns.column3[2] === 'O') ||
-        (rows.row1[0] === 'O' && rows.row2[1] === 'O' && rows.row3[2] === 'O') ||
-        (rows.row1[2] === 'O' && rows.row2[1] === 'O' && rows.row3[0] === 'O')
-    ) {
-        oWin = true;
-    } else if(clickCount === 9) {
+function winner() {
+
+    for(let a in matrix) {
+        for(let b in matrix[a]) {
+            let xCounter = 0;
+            let oCounter = 0;
+            for(let value of matrix[a][b]) {
+                if(value === 'X') {
+                    xCounter++;
+                    if(xCounter === 3) {
+                        xWin = true;
+                        xCounter = 0;
+                    }
+                } else if(value === 'O') {
+                    oCounter++;
+                    if(oCounter === 3) {
+                        oWin = true;
+                        oCounter = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    if(clickCount === 9) {
         draw = true;
     }
 }
 
 // update player object data
-function updatePlayerData() {
+function userData() {
+
     if(draw === true) {
         player.win = 'draw';
     } else if(xWin === true && player.letter === 'X') {
@@ -189,6 +200,7 @@ function updatePlayerData() {
 
 // show popup message function
 function showPopup() {
+
     if(draw === true || xWin === true || oWin === true) {
 
         popup.classList.toggle('hide')
