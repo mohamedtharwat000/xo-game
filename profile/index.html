@@ -51,16 +51,28 @@
                     </div>
 
                     <div class="profile-control">
-                        <button class="editProfile"><span>Edit Profile</span></button>
+                        <button class="editProfile"><span>Edit Profile</span>
+
+                            <!-- make a slider menu inside the button -->
+
+
+
+
+                        </button>
                         <button class="resetProfile"><span>Reset Profile</span></button>
                     </div>
                 </section>
                 <br>
-                <div>
-                    <label for="files" class="btn"
-                        style="background-color: #f1f1f1; color: #000; border: 0px solid #000; padding: 10px 10px ;border-radius: 5px; cursor: pointer;">
-                        Change profile image</label>
-                    <input id="files" style="visibility:hidden;" type="file" class="uploadProfilePic" accept="image/*">
+                <div class="editData hidden">
+                    <!-- change player name -->
+                    <label class="changePlayerr">
+                        <span>Player Name</span>
+                        <input type="text" id="changePlayerName">
+                    </label>
+
+
+                    <label for="files" class="btn "> Change profile image</label>
+                    <input id="files" type="file" class="uploadProfilePic" accept="image/*" style="display: none;" />
                 </div>
 
 

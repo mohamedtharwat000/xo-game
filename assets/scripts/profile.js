@@ -7,14 +7,38 @@ let countTotal = document.querySelector(".count-total   span");
 let rate = document.querySelector(".count-rate  span");
 
 let playerName = document.querySelector(".playerName");
-
+let changePlayerName = document.getElementById("changePlayerName");
+let divEditdata = document.querySelector(".editData");
 let btnEditProfile = document.querySelector(".editProfile");
 // console.log(countDraw);
 // console.log(historyList);
 
+// Reset button
+let resetBtn = document.querySelector(".resetProfile");
+
+btnEditProfile.addEventListener("click", () => {
+  divEditdata.classList.toggle("hidden");
+});
+
 let profilePic = document.getElementById("profilePic");
 console.log(profilePic);
 let uploadProfilePic = document.querySelector(".uploadProfilePic");
+
+// change player name when input value in changePlayerName input to playerName
+changePlayerName.addEventListener("change", (e) => {
+  playerName.textContent = e.target.value;
+
+  //   add player name to local storage
+  localStorage.setItem("playerName", e.target.value);
+});
+changePlayerName.addEventListener("keydown", (e) => {
+  if (e.code === "Enter") {
+    playerName.textContent = e.target.value;
+
+    //   add player name to local storage
+    localStorage.setItem("playerName", e.target.value);
+  }
+});
 
 uploadProfilePic.addEventListener("change", function () {
   if (this.files && this.files[0]) {
@@ -59,33 +83,6 @@ profilePic.addEventListener(
   },
   false
 );
-
-btnEditProfile.addEventListener("click", () => {
-  //   make a menu slider inside btnEditProfile
-
-  let menu = document.createElement("div");
-  menu.classList.add("menu");
-  menu.innerHTML = `
-<div class="menu-item">
-    <div class="menu-item-icon">
-        <i class="fas fa-user-edit"></i>
-    </div>
-    <div class="menu-item-text">
-        Edit Profile
-    </div>
-</div>
-<div class="menu-item">
-
-    <div class="menu-item-icon">
-        <i class="fas fa-sign-out-alt"></i>
-    </div>
-    <div class="menu-item-text">
-        Logout
-    </div>
-</div>
-`;
-  btnEditProfile.appendChild(menu);
-});
 
 const getRecentGamesData = () => {
   const data = [
@@ -167,12 +164,27 @@ const getProfileStatus = () => {
   return data;
 };
 
+let wins = getProfileStatus().wins;
+let losses = getProfileStatus().losses;
+let draw = getProfileStatus().draw;
+
+// add wins , losses , draw to local storage
+
+localStorage.setItem("wins", wins);
+localStorage.setItem("losses", losses);
+localStorage.setItem("draw", draw);
+
 // pass value of wins losses and draw to countWins countLosses and countDraw
-countTotal.innerHTML =
-  getProfileStatus().wins + getProfileStatus().losses + getProfileStatus().draw;
-countWins.innerHTML = getProfileStatus().wins;
-countLosses.innerHTML = getProfileStatus().losses;
-countDraw.innerHTML = getProfileStatus().draw;
+// countTotal.innerHTML =
+//   getProfileStatus().wins + getProfileStatus().losses + getProfileStatus().draw;
+// countWins.innerHTML = getProfileStatus().wins;
+// countLosses.innerHTML = getProfileStatus().losses;
+// countDraw.innerHTML = getProfileStatus().draw;
+
+countTotal.innerHTML = wins + losses + draw;
+countWins.innerHTML = wins;
+countLosses.innerHTML = losses;
+countDraw.innerHTML = draw;
 
 // calculate rate
 let rateValue = (getProfileStatus().wins / countTotal.innerHTML) * 100;
@@ -188,11 +200,60 @@ rate.innerHTML = rateValue.toFixed(2);
 //   }
 // });
 
+// reset button clear all data from page and local storage
+resetBtn.addEventListener("click", () => {
+  localStorage.clear();
+  location.reload();
+});
+
 // make that with document because it's faster than window
 document.addEventListener("DOMContentLoaded", function () {
   // get profilePic from local storage
   let profilePicData = localStorage.getItem("profilePic");
   if (profilePicData) {
     profilePic.src = profilePicData;
+  }
+
+  // get playerName from local storage
+  let playerNameData = localStorage.getItem("playerName");
+  if (playerNameData) {
+    playerName.textContent = playerNameData;
+  }
+
+  //   get wins , losses , draw from local storage
+  let winsData = localStorage.getItem("wins");
+  let lossesData = localStorage.getItem("losses");
+  let drawData = localStorage.getItem("draw");
+  if (winsData && lossesData && drawData) {
+    // show total as numbers not string
+    countTotal.innerHTML = +winsData + +lossesData + +drawData;
+    countWins.innerHTML = winsData;
+    countLosses.innerHTML = lossesData;
+    countDraw.innerHTML = drawData;
+  }
+  // calculate rate
+  let rateValue = (winsData / countTotal.innerHTML) * 100;
+  rate.innerHTML = rateValue.toFixed(2);
+
+  // get historyList from local storage
+  let historyListData = JSON.parse(localStorage.getItem("historyList"));
+  if (historyListData) {
+    for (let i = 0; i < historyListData.length; i++) {
+      let div = document.createElement("div");
+      if (historyListData[i][0] === "win") {
+        div.classList.add("win");
+      } else if (historyListData[i][0] === "lose") {
+        div.classList.add("lose");
+      } else {
+        div.classList.add("draw");
+      }
+      div.innerHTML = `
+            <div class="history-item__status">
+            <div class="history-item__status--${historyListData[i][0]}"></div>
+            </div>
+            <div class="history-item__date">${historyListData[i][1]}</div>
+            `;
+      historyList.appendChild(div);
+    }
   }
 });
