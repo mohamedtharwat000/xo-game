@@ -14,7 +14,7 @@ const newGameBtn = document.getElementById('new-game');
 const popup = document.getElementById('who-win');
 
 // player data
-const player = {letter: '', win: false}
+const player = {letter: ''}
 
 // board matrix
 const rows = {row1: [], row2: [], row3: []};
@@ -23,7 +23,7 @@ const diagonals = {diagonal1: [], diagonal2: []};
 const matrix = {rows, columns, diagonals};
 
 // global variables
-let value = player.letter === 'X' ? 'X' : player.letter === 'O' ? 'O' : 'X';
+let value = 'X';
 let valueChange = 1;
 let clickCount = 0;
 let xWin = false;
@@ -53,7 +53,6 @@ function game(event) {
 
     fillMatrix(event.target)
     winner();
-    userData()
     showPopup()
     
     valueChange *= -1;
@@ -183,18 +182,6 @@ function winner() {
 
     if(clickCount === 9) {
         draw = true;
-    }
-}
-
-// update player object data
-function userData() {
-
-    if(draw === true) {
-        player.win = 'draw';
-    } else if(xWin === true && player.letter === 'X') {
-        player.win = true;
-    } else if(oWin === true && player.letter === 'O') {
-        player.win = true;
     }
 }
 
