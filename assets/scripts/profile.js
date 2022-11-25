@@ -5,6 +5,10 @@ let countLosses = document.querySelector(".count-losses span");
 let countDraw = document.querySelector(".count-draws span");
 let countTotal = document.querySelector(".count-total   span");
 let rate = document.querySelector(".count-rate  span");
+
+let playerName = document.querySelector(".playerName");
+
+let btnEditProfile = document.querySelector(".editProfile");
 // console.log(countDraw);
 // console.log(historyList);
 
@@ -55,6 +59,33 @@ profilePic.addEventListener(
   },
   false
 );
+
+btnEditProfile.addEventListener("click", () => {
+  //   make a menu slider inside btnEditProfile
+
+  let menu = document.createElement("div");
+  menu.classList.add("menu");
+  menu.innerHTML = `
+<div class="menu-item">
+    <div class="menu-item-icon">
+        <i class="fas fa-user-edit"></i>
+    </div>
+    <div class="menu-item-text">
+        Edit Profile
+    </div>
+</div>
+<div class="menu-item">
+
+    <div class="menu-item-icon">
+        <i class="fas fa-sign-out-alt"></i>
+    </div>
+    <div class="menu-item-text">
+        Logout
+    </div>
+</div>
+`;
+  btnEditProfile.appendChild(menu);
+});
 
 const getRecentGamesData = () => {
   const data = [
