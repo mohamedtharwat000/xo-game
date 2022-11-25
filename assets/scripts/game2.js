@@ -89,7 +89,6 @@ function restartFn() {
         diagonals.diagonal2 = [];
 
         player.letter = '';
-        player.win = false;
 
         if(!popup.classList.contains('hide')) {
             popup.classList.toggle('hide');
