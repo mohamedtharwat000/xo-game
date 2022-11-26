@@ -252,20 +252,20 @@ function nextMove() {
                 switch(c) {
                     case '0':
                         if(matrixValues[a][b][0] !== '') {
-                            matrixButtons[a][b][1].dataset.priority = (2 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
-                            matrixButtons[a][b][2].dataset.priority = (1 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
+                            matrixButtons[a][b][1].dataset.priority = (1 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
+                            matrixButtons[a][b][2].dataset.priority = (2 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
                         }
                         break;
                     case '1':
                         if(matrixValues[a][b][1] !== '') {
-                            matrixButtons[a][b][0].dataset.priority = (1 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
-                            matrixButtons[a][b][2].dataset.priority = (1 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
+                            matrixButtons[a][b][0].dataset.priority = (2 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
+                            matrixButtons[a][b][2].dataset.priority = (2 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
                         }
                         break;
                     case '2':
                         if(matrixValues[a][b][2] !== '') {
-                            matrixButtons[a][b][0].dataset.priority = (1 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
-                            matrixButtons[a][b][1].dataset.priority = (2 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
+                            matrixButtons[a][b][0].dataset.priority = (2 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
+                            matrixButtons[a][b][1].dataset.priority = (1 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
                         }
                         break;
                 }
