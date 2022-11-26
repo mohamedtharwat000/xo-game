@@ -284,6 +284,7 @@ function nextMove() {
     if(emptyButtonsArr[0] === undefined) {
         winner();
         showPopup()
+        return;
     }
 
     emptyButtonsArr[0].innerHTML = value;
