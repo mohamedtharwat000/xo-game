@@ -214,12 +214,12 @@ function winner() {
                         oWin = true;
                         oCounter = 0;
                     }
-                } else if(clickCount === 9) {
-                    draw = true;
-                    clickCount = 0;
                 }
             }
         }
+    }
+    if(clickCount === 9) {
+        draw = true;
     }
 }
 

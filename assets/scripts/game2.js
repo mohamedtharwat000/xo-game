@@ -24,7 +24,6 @@ const matrix = {rows, columns, diagonals};
 
 // global variables
 let value = 'X';
-let valueChange = 1;
 let clickCount = 0;
 let xWin = false;
 let oWin = false;
@@ -37,6 +36,7 @@ let draw = false;
 for(let letter of chooseLetter) {
     letter.addEventListener('click', function() {
         player.letter = letter.innerHTML
+        value = player.letter
         letter.parentElement.parentElement.classList.toggle('hide')
     })
 }
@@ -55,8 +55,8 @@ function game(event) {
     winner();
     showPopup()
     
-    valueChange *= -1;
-    valueChange === 1 ? value = 'X' : value = 'O';
+    value = value === 'X' ? value = 'O' : value = 'X'
+
     event.target.removeEventListener('click', game);
 }
 
@@ -73,7 +73,6 @@ function restartFn() {
         button.addEventListener('click', game);
 
         value = 'X';
-        valueChange = 1;
         clickCount = 0;
         xWin = false;
         oWin = false;
@@ -91,11 +90,11 @@ function restartFn() {
         player.letter = '';
 
         if(!popup.classList.contains('hide')) {
-            popup.classList.toggle('hide');
+            popup.classList.add('hide');
         }
 
         if(chooseLetter[0].parentElement.parentElement.classList.contains('hide')) {
-            chooseLetter[0].parentElement.parentElement.classList.toggle('hide');
+            chooseLetter[0].parentElement.parentElement.classList.remove('hide');
         }
     }
 }
@@ -178,7 +177,6 @@ function winner() {
             }
         }
     }
-
     if(clickCount === 9) {
         draw = true;
     }
@@ -189,7 +187,7 @@ function showPopup() {
 
     if(draw === true || xWin === true || oWin === true) {
 
-        popup.classList.toggle('hide')
+        popup.classList.remove('hide')
 
         if(draw === true) {
             document.getElementById('win-message').innerHTML = 'draw';
