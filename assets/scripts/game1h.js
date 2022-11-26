@@ -252,12 +252,15 @@ function nextMove() {
                 switch(c) {
 
                     case '0':
+                        // start medium mode function
                         if(matrixValues[a][b][c] === 'X' || matrixValues[a][b][c] === 'O') {
                             matrixButtons[a][b][1].dataset.priority = 
                             (4 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
                             matrixButtons[a][b][2].dataset.priority = 
                             (2 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
-
+                        // end medium mode function
+                            
+                            // start hard mode function
                             if(matrixValues[a][b][c] === matrixValues[a][b][1]) {
                                 matrixButtons[a][b][2].dataset.priority = 
                                 (2 * Number(matrixButtons[a][b][2].dataset.priority)).toString();
@@ -265,16 +268,20 @@ function nextMove() {
                                 matrixButtons[a][b][1].dataset.priority = 
                                 (2 * Number(matrixButtons[a][b][1].dataset.priority)).toString();
                             }
+                            // end hard mode function
                         }
                         break;
 
                     case '1':
+                        // start medium mode function
                         if(matrixValues[a][b][c] === 'X' || matrixValues[a][b][c] === 'O') {
                             matrixButtons[a][b][0].dataset.priority = 
                             (2 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
                             matrixButtons[a][b][2].dataset.priority = 
                             (2 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
+                        // end medium mode function
 
+                            // start hard mode function
                             if(matrixValues[a][b][c] === matrixValues[a][b][0]) {
                                 matrixButtons[a][b][2].dataset.priority = 
                                 (2 * Number(matrixButtons[a][b][2].dataset.priority)).toString();
@@ -282,16 +289,20 @@ function nextMove() {
                                 matrixButtons[a][b][0].dataset.priority = 
                                 (2 * Number(matrixButtons[a][b][0].dataset.priority)).toString();
                             }
+                            // end hard mode function
                         }
                         break;
 
                     case '2':
+                        // start medium mode function
                         if(matrixValues[a][b][c] === 'X' || matrixValues[a][b][c] === 'O') {
                             matrixButtons[a][b][0].dataset.priority = 
                             (2 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
                             matrixButtons[a][b][1].dataset.priority = 
                             (4 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
+                        // end medium mode function
 
+                            // start hard mode function
                             if(matrixValues[a][b][c] === matrixValues[a][b][0]) {
                                 matrixButtons[a][b][1].dataset.priority = 
                                 (2 * Number(matrixButtons[a][b][1].dataset.priority)).toString();
@@ -299,6 +310,7 @@ function nextMove() {
                                 matrixButtons[a][b][0].dataset.priority = 
                                 (2 * Number(matrixButtons[a][b][0].dataset.priority)).toString();
                             }
+                            // end hard mode function
                         }
                         break;
                 }
