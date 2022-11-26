@@ -85,12 +85,8 @@ function game(event) {
     winner();
     showPopup()
     
-    if(value === 'X') {
-        value = 'O';
-    } else if(value === 'O') {
-        value = 'X';
-    }
-    // event.target.removeEventListener('click', game);
+    value = value === 'X' ? value = 'O' : value = 'X'
+
     for(let button of buttons) {
         button.removeEventListener('click', game);
     }
@@ -115,15 +111,6 @@ function restartFn() {
         xWin = false;
         oWin = false;
         draw = false;
-
-        matrixButtons.rows.row1 = [buttonsArr[0], buttonsArr[1], buttonsArr[2]];
-        matrixButtons.rows.row2 = [buttonsArr[3], buttonsArr[4], buttonsArr[5]];
-        matrixButtons.rows.row3 = [buttonsArr[6], buttonsArr[7], buttonsArr[8]];
-        matrixButtons.columns.column1 = [buttonsArr[0], buttonsArr[3], buttonsArr[6]];
-        matrixButtons.columns.column2 = [buttonsArr[1], buttonsArr[4], buttonsArr[7]];
-        matrixButtons.columns.column3 = [buttonsArr[2], buttonsArr[5], buttonsArr[8]];
-        matrixButtons.diagonals.diagonal1 = [buttonsArr[0], buttonsArr[4], buttonsArr[8]];
-        matrixButtons.diagonals.diagonal2 = [buttonsArr[2], buttonsArr[4], buttonsArr[6]];
 
         matrixValues.rows.row1 = [];
         matrixValues.rows.row2 = [];
@@ -258,9 +245,6 @@ function showPopup() {
 // next move function
 function nextMove() {
     clickCount++;
-    // for(let button of buttons) {
-    //     button.removeEventListener('click', game);
-    // }
 
     for(let a in matrixButtons) {
         for(let b in matrixButtons[a]) {
@@ -300,12 +284,12 @@ function nextMove() {
     if(emptyButtonsArr[0] === undefined) {
         winner();
         showPopup()
-    } else {
-        emptyButtonsArr[0].innerHTML = value;
-        winner();
-    showPopup()
     }
 
+    emptyButtonsArr[0].innerHTML = value;
+
+    winner();
+    showPopup()
 
     for(let button of buttons) {
         if(button.innerHTML === '') {
@@ -313,10 +297,6 @@ function nextMove() {
         }
     }
 
-    if(value === 'X') {
-        value = 'O';
-    } else if(value === 'O') {
-        value = 'X';
-    }
+    value = value === 'X' ? value = 'O' : value = 'X'
 
 }
