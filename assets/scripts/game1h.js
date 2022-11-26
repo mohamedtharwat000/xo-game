@@ -78,8 +78,8 @@ for(let button of buttons) {
 
 // main function with all game logic
 function game(event) {
-    clickCount++;
     event.target.innerHTML = value;
+    clickCount++;
 
     fillMatrix(event.target)
     winner();
@@ -90,7 +90,7 @@ function game(event) {
     for(let button of buttons) {
         button.removeEventListener('click', game);
     }
-
+    
     setTimeout(nextMove, 1000);
 }
 
@@ -105,51 +105,50 @@ function restartFn() {
     for(button of buttons) {
         button.innerHTML = '';
         button.addEventListener('click', game);
-
-        value = 'X';
-        clickCount = 0;
-        xWin = false;
-        oWin = false;
-        draw = false;
-
-        matrixValues.rows.row1 = [];
-        matrixValues.rows.row2 = [];
-        matrixValues.rows.row3 = [];
-        matrixValues.columns.column1 = [];
-        matrixValues.columns.column2 = [];
-        matrixValues.columns.column3 = [];
-        matrixValues.diagonals.diagonal1 = [];
-        matrixValues.diagonals.diagonal2 = [];
-
-
-        player.letter = '';
-
-        buttonsArr.forEach(function(value, index, arr) {
-            if(value === arr[4]) {
-                value.dataset.priority = '2';
-            } else {
-                value.dataset.priority = '1';
-            }
-        });
-
-        if(!popup.classList.contains('hide')) {
-            popup.classList.add('hide');
-        }
-
-        if(chooseLetter[0].parentElement.parentElement.classList.contains('hide')) {
-            chooseLetter[0].parentElement.parentElement.classList.remove('hide');
-        }
     }
+
+    value = 'X';
+    clickCount = 0;
+    xWin = false;
+    oWin = false;
+    draw = false;
+
+    matrixValues.rows.row1 = [];
+    matrixValues.rows.row2 = [];
+    matrixValues.rows.row3 = [];
+    matrixValues.columns.column1 = [];
+    matrixValues.columns.column2 = [];
+    matrixValues.columns.column3 = [];
+    matrixValues.diagonals.diagonal1 = [];
+    matrixValues.diagonals.diagonal2 = [];
+
+
+    player.letter = '';
+
+    buttonsArr.forEach(function(value, index, arr) {
+        if(value === arr[4]) {
+            value.dataset.priority = '2';
+        } else {
+            value.dataset.priority = '1';
+        }
+    });
+
+    if(!popup.classList.contains('hide')) {
+        popup.classList.add('hide');
+    }
+
+    if(chooseLetter[0].parentElement.parentElement.classList.contains('hide')) {
+        chooseLetter[0].parentElement.parentElement.classList.remove('hide');
+    }
+    
 }
 
 // helper function used in main function
 
 // this function add values to rows and columns object
 function fillMatrix(target) {
-
     const row = target.dataset.row;
     const column = target.dataset.column;
-
     switch(true) {
         case (row === '1' && column === '1'):
             matrixValues.rows.row1[0] = value;
@@ -198,7 +197,6 @@ function fillMatrix(target) {
 
 // this function to know who win X or O or it is a draw
 function winner() {
-
     for(let a in matrixValues) {
         for(let b in matrixValues[a]) {
             let xCounter = 0;
@@ -216,22 +214,19 @@ function winner() {
                         oWin = true;
                         oCounter = 0;
                     }
+                } else if(clickCount === 9) {
+                    draw = true;
+                    clickCount = 0;
                 }
             }
         }
-    }
-
-    if(clickCount === 9) {
-        draw = true;
     }
 }
 
 // show popup message function
 function showPopup() {
-
     if(draw === true || xWin === true || oWin === true) {
         popup.classList.remove('hide')
-
         if(draw === true) {
             document.getElementById('win-message').innerHTML = 'draw';
         } else if(xWin === true) {
@@ -244,29 +239,36 @@ function showPopup() {
 
 // next move function
 function nextMove() {
-    clickCount++;
-
     for(let a in matrixButtons) {
         for(let b in matrixButtons[a]) {
             for(let c in matrixButtons[a][b]) {
+                let innerValue = matrixValues[a][b][c];
+                let outerValue = matrixButtons[a][b];
                 switch(c) {
-
                     case '0':
                         // start medium mode function
-                        if(matrixValues[a][b][c] === 'X' || matrixValues[a][b][c] === 'O') {
-                            matrixButtons[a][b][1].dataset.priority = 
-                            (4 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
-                            matrixButtons[a][b][2].dataset.priority = 
-                            (2 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
+                        if(innerValue === 'X' || innerValue === 'O') {
+                            outerValue[1].dataset.priority = (4 + Number(outerValue[1].dataset.priority)).toString();
+                            outerValue[2].dataset.priority = (2 + Number(outerValue[2].dataset.priority)).toString();
                         // end medium mode function
-                            
+
                             // start hard mode function
-                            if(matrixValues[a][b][c] === matrixValues[a][b][1]) {
-                                matrixButtons[a][b][2].dataset.priority = 
-                                (2 * Number(matrixButtons[a][b][2].dataset.priority)).toString();
-                            } else if(matrixValues[a][b][c] === matrixValues[a][b][2]) {
-                                matrixButtons[a][b][1].dataset.priority = 
-                                (2 * Number(matrixButtons[a][b][1].dataset.priority)).toString();
+                            if(innerValue === matrixValues[a][b][1]) {
+
+                                if(innerValue === value) {
+                                    outerValue[2].dataset.priority = (4 * Number(outerValue[2].dataset.priority)).toString();
+                                } else {
+                                    outerValue[2].dataset.priority = (2 * Number(outerValue[2].dataset.priority)).toString();
+                                }
+
+                            } else if(innerValue === matrixValues[a][b][2]) {
+
+                                if(innerValue === value) {
+                                    outerValue[1].dataset.priority = (4 * Number(outerValue[1].dataset.priority)).toString();
+                                } else {
+                                    outerValue[1].dataset.priority = (2 * Number(outerValue[1].dataset.priority)).toString();
+                                }
+
                             }
                             // end hard mode function
                         }
@@ -274,20 +276,28 @@ function nextMove() {
 
                     case '1':
                         // start medium mode function
-                        if(matrixValues[a][b][c] === 'X' || matrixValues[a][b][c] === 'O') {
-                            matrixButtons[a][b][0].dataset.priority = 
-                            (2 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
-                            matrixButtons[a][b][2].dataset.priority = 
-                            (2 + Number(matrixButtons[a][b][2].dataset.priority)).toString();
+                        if(innerValue === 'X' || innerValue === 'O') {
+                            outerValue[0].dataset.priority = (2 + Number(outerValue[0].dataset.priority)).toString();
+                            outerValue[2].dataset.priority = (2 + Number(outerValue[2].dataset.priority)).toString();
                         // end medium mode function
 
                             // start hard mode function
-                            if(matrixValues[a][b][c] === matrixValues[a][b][0]) {
-                                matrixButtons[a][b][2].dataset.priority = 
-                                (2 * Number(matrixButtons[a][b][2].dataset.priority)).toString();
-                            } else if(matrixValues[a][b][c] === matrixValues[a][b][2]) {
-                                matrixButtons[a][b][0].dataset.priority = 
-                                (2 * Number(matrixButtons[a][b][0].dataset.priority)).toString();
+                            if(innerValue === matrixValues[a][b][0]) {
+
+                                if(innerValue === value) {
+                                    outerValue[2].dataset.priority = (4 * Number(outerValue[2].dataset.priority)).toString();
+                                } else {
+                                    outerValue[2].dataset.priority = (2 * Number(outerValue[2].dataset.priority)).toString();
+                                }
+                                
+                            } else if(innerValue === matrixValues[a][b][2]) {
+
+                                if(innerValue === value) {
+                                    outerValue[0].dataset.priority = (4 * Number(outerValue[0].dataset.priority)).toString();
+                                } else {
+                                    outerValue[0].dataset.priority = (2 * Number(outerValue[0].dataset.priority)).toString();
+                                }
+                                
                             }
                             // end hard mode function
                         }
@@ -295,20 +305,28 @@ function nextMove() {
 
                     case '2':
                         // start medium mode function
-                        if(matrixValues[a][b][c] === 'X' || matrixValues[a][b][c] === 'O') {
-                            matrixButtons[a][b][0].dataset.priority = 
-                            (2 + Number(matrixButtons[a][b][0].dataset.priority)).toString();
-                            matrixButtons[a][b][1].dataset.priority = 
-                            (4 + Number(matrixButtons[a][b][1].dataset.priority)).toString();
+                        if(innerValue === 'X' || innerValue === 'O') {
+                            outerValue[0].dataset.priority = (2 + Number(outerValue[0].dataset.priority)).toString();
+                            outerValue[1].dataset.priority = (4 + Number(outerValue[1].dataset.priority)).toString();
                         // end medium mode function
 
                             // start hard mode function
-                            if(matrixValues[a][b][c] === matrixValues[a][b][0]) {
-                                matrixButtons[a][b][1].dataset.priority = 
-                                (2 * Number(matrixButtons[a][b][1].dataset.priority)).toString();
-                            } else if(matrixValues[a][b][c] === matrixValues[a][b][1]) {
-                                matrixButtons[a][b][0].dataset.priority = 
-                                (2 * Number(matrixButtons[a][b][0].dataset.priority)).toString();
+                            if(innerValue === matrixValues[a][b][0]) {
+
+                                if(innerValue === value) {
+                                    outerValue[1].dataset.priority = (4 * Number(outerValue[1].dataset.priority)).toString();v
+                                } else {
+                                    outerValue[1].dataset.priority = (2 * Number(outerValue[1].dataset.priority)).toString();
+                                }
+                                
+                            } else if(innerValue === matrixValues[a][b][1]) {
+
+                                if(innerValue === value) {
+                                    outerValue[0].dataset.priority = (4 * Number(outerValue[0].dataset.priority)).toString();
+                                } else {
+                                    outerValue[0].dataset.priority = (2 * Number(outerValue[0].dataset.priority)).toString();
+                                }
+                                
                             }
                             // end hard mode function
                         }
@@ -326,16 +344,15 @@ function nextMove() {
         return value.innerHTML === '';
     })
     
+    clickCount++;
+
     if(emptyButtonsArr[0] === undefined) {
+        return;
+    } else {
+        emptyButtonsArr[0].innerHTML = value;
         winner();
         showPopup()
-        return;
     }
-
-    emptyButtonsArr[0].innerHTML = value;
-
-    winner();
-    showPopup()
 
     for(let button of buttons) {
         if(button.innerHTML === '') {
