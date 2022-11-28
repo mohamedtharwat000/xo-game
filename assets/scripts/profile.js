@@ -85,30 +85,32 @@ profilePic.addEventListener(
 );
 
 const getRecentGamesData = () => {
-  const data = [
-    {
-      status: "win",
-      date: "08:17:13AM, 25/10/2022",
-    },
-    {
-      status: "lose",
-      date: "12:17:13AM, 22/10/2022",
-    },
-    {
-      status: "lose",
-      date: "03:17:13PM, 21/10/2022",
-    },
-    {
-      status: "win",
-      date: "01:17:13AM, 21/10/2022",
-    },
-    {
-      status: "draw",
-      date: "11:17:13AM, 20/10/2022",
-    },
-  ];
-
+  // get gamesHistory from local storage
+  let data = JSON.parse(localStorage.getItem("gamesHistory")) || [];
   return data;
+  //   const data = [
+  //     {
+  //       status: "win",
+  //       date: "08:17:13AM, 25/10/2022",
+  //     },
+  //     {
+  //       status: "lose",
+  //       date: "12:17:13AM, 22/10/2022",
+  //     },
+  //     {
+  //       status: "lose",
+  //       date: "03:17:13PM, 21/10/2022",
+  //     },
+  //     {
+  //       status: "win",
+  //       date: "01:17:13AM, 21/10/2022",
+  //     },
+  //     {
+  //       status: "draw",
+  //       date: "11:17:13AM, 20/10/2022",
+  //     },
+  //   ];
+  //   return data;
 };
 
 // destructuring RecentGamesData
@@ -119,7 +121,7 @@ const getRecentGamesData = () => {
 let arrStdata = [];
 
 for (let i = 0; i < getRecentGamesData().length; i++) {
-  arri = [getRecentGamesData()[i].status, getRecentGamesData()[i].date];
+  arri = [getRecentGamesData()[i].state, getRecentGamesData()[i].date];
   arrStdata.push(arri);
   //   arrData.push(getRecentGamesData()[i]);
 }
@@ -141,9 +143,10 @@ for (let i = 0; i < arrStdata.length; i++) {
     </div>
     <div class="history-item__date">${arrStdata[i][1]}</div>
     `;
-  historyList.appendChild(div);
+  //   historyList.appendChild(div);
 }
-
+console.log(arrStdata);
+console.log(historyList);
 // add historyList to local storage
 
 localStorage.setItem("historyList", JSON.stringify(arrStdata));
@@ -156,11 +159,22 @@ let historyListData = JSON.parse(localStorage.getItem("historyList"));
 console.log(arrStdata);
 const getProfileStatus = () => {
   const data = {
-    wins: 20,
-    losses: 50,
-    draw: 30,
+    wins: 0,
+    losses: 0,
+    draw: 0,
   };
 
+  // get gamesHistory from local storage
+  let datas = JSON.parse(localStorage.getItem("gamesHistory")) || [];
+  for (let i = 0; i < datas.length; i++) {
+    if (datas[i].state === "win") {
+      data.wins++;
+    } else if (datas[i].state === "lose") {
+      data.losses++;
+    } else {
+      data.draw++;
+    }
+  }
   return data;
 };
 
@@ -188,7 +202,15 @@ countDraw.innerHTML = draw;
 
 // calculate rate
 let rateValue = (getProfileStatus().wins / countTotal.innerHTML) * 100;
-rate.innerHTML = rateValue.toFixed(2);
+
+// add rateValue to rate innerHTML if rateValue is not NaN
+if (!isNaN(rateValue)) {
+  rate.innerHTML = rateValue.toFixed(2);
+} else {
+  rate.innerHTML = "0";
+}
+
+// rate.innerHTML = rateValue.toFixed(2);
 
 // get data from local storage when page is loaded
 
@@ -233,7 +255,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   // calculate rate
   let rateValue = (winsData / countTotal.innerHTML) * 100;
-  rate.innerHTML = rateValue.toFixed(2);
+  //   rate.innerHTML = rateValue.toFixed(2);
+
+  if (!isNaN(rateValue)) {
+    rate.innerHTML = rateValue.toFixed(2);
+  } else {
+    rate.innerHTML = "0";
+  }
 
   // get historyList from local storage
   let historyListData = JSON.parse(localStorage.getItem("historyList"));
@@ -257,3 +285,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+// let gamesHistory = JSON.parse(localStorage.getItem("gamesHistory")) || [];
+// console.log(gamesHistory);
