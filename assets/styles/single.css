@@ -13,7 +13,8 @@ body {
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 1.5rem;
+    padding-top: 13rem;
+    height: 100vh;
 }
 
 div.row {
@@ -66,10 +67,6 @@ div.playerchoice button {
     margin: 0 0.9rem;
 }
 
-div.playagain {
-    padding: 1.5rem;
-}
-
 div.playagain button {
     display: inline-block;
     height: 64px;
@@ -91,7 +88,7 @@ div.playagain button {
     display: none;
 }
 
-@media screen and (max-width: 400px) {
+@media (max-width: 400px) {
     div.single {
         height: 96px;
         width: 96px;
@@ -126,11 +123,19 @@ div.playagain button {
     }
 }
 
-@media screen and (max-width: 360px) {
+@media (max-width: 360px) {
     div.single {
         height: 64px;
         width: 64px;
         font-size: 64px;
         line-height: 64px;
+    }
+}
+
+@media(min-width: 401px) {
+    footer {
+        position: absolute;
+        bottom: -500px;
+        width: 100%;
     }
 }
