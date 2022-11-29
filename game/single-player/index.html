@@ -1,80 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Tic Tac Toe Single Player Easy</title>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Tic Tac Toe | Single Player Easy</title>
     <link rel="icon" href="../../assets/Images/home/tic-tac-toe.png">
     <link rel="stylesheet" href="../../assets/styles/normalize.css">
     <link rel="stylesheet" href="../../assets/styles/all.min.css">
-    <link rel="stylesheet" href="../../assets/styles/global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="stylesheet" href="../../assets/styles/single.css">
     <meta name="google-site-verification" content="cA453yRrOfy23zkQotT-18FNderh1aaqd3QpWx6CZSU" />
+    <link rel="stylesheet" href="../../assets/styles/single.css">
+    <link rel="stylesheet" href="../../assets/styles/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
-        <a href="../../index.html" class="logo">XO Online</a>
+        <a href="../../" class="logo">XO Online</a>
         <nav>
             <ul>
                 <li>
                     <div class="icon">
-                        <a href="../../index.html"><i class="fa-solid fa-house"></i></a>
+                        <a href="../../"><i class="fa-solid fa-house"></i></a>
                     </div>
-                    <a href="../../index.html">Home</a>
+                    <a href="../../">Home</a>
                 </li>
                 <li>
                     <div class="icon">
-                        <a href="../../profile/index.html"><i class="fa-solid fa-user"></i></a>
+                        <a href="../../profile/"><i class="fa-solid fa-user"></i></a>
                     </div>
-                    <a href="../../profile/index.html">Profile</a>
+                    <a href="../../profile/">Profile</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <div class="select-box">
-        <h2>Play Against Computer</h2>
-        <div class="content">
-            <div class="title">Select Your Player Icon</div>
-            <div class="options">
-                <button class="playerX">Player X</button>
-                <button class="playerO">Player O</button>
-            </div>
+    <h1 class="gamePage" style="font-size: 2rem; text-align: center; color: white;">Single Player Easy</h1>
+    <div class="container">
+        <div class="game-grid hidden">
+        <div class="row row-one">
+            <div class="single" id="11">?</div>
+            <div class="single" id="12">?</div>
+            <div class="single" id="13">?</div>
         </div>
-    </div>
-    <div class="play-board">
-        <div class="details">
-            <div class="players">
-                <span class="Xturn">X's Turn</span>
-                <span class="Oturn">O's Turn</span>
-                <div class="slider"></div>
-            </div>
+        <div class="row row-two">
+            <div class="single" id="21">?</div>
+            <div class="single" id="22">?</div>
+            <div class="single" id="23">?</div>
         </div>
-        <div class="play-area">
-            <section>
-                <span class="box1"></span>
-                <span class="box2"></span>
-                <span class="box3"></span>
-            </section>
-            <section>
-                <span class="box4"></span>
-                <span class="box5"></span>
-                <span class="box6"></span>
-            </section>
-            <section>
-                <span class="box7"></span>
-                <span class="box8"></span>
-                <span class="box9"></span>
-            </section>
+        <div class="row row-three">
+            <div class="single" id="31">?</div>
+            <div class="single" id="32">?</div>
+            <div class="single" id="33">?</div>
         </div>
-    </div>
-    <div class="result-box">
-        <div class="won-text"></div>
-        <div class="btn">
-            <button style="margin:5px">Restart</button>
-            <button style="margin:5px" onclick="window.location.href = '../../index.html';">Go Home</button>
         </div>
-    </div>
-    <footer style="position: absolute; bottom:0;width:100%;">
+        <div id="infodisplay">
+            Choose Your Letter
+        </div>
+        <div class="playerchoice">
+            <button id="chooseX">X</button>
+            <button id="chooseO">O</button>
+        </div>
+        <div class="playagain hidden">
+            <button id="playagainyes">Rematch</button>
+        </div>
+    </div>  
+    <footer>
         <p>Made With <span><i class="fa-solid fa-heart"></i></span> By Ahmed Zena, Mohamed Tharwat and Muhammad Shoaib</p>
     </footer>
     <script src="../../assets/scripts/single.js"></script>
