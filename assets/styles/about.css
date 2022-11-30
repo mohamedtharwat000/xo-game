@@ -1,9 +1,135 @@
-*{
-    margin: 0;
-    padding: 0;
+*, *::after, *::before {
     box-sizing: border-box;
     position: relative;
+    margin: 0;
+    padding: 0;
     border: none;
-    outline: none;
+    outline: transparent;
+}
+
+html {
     font-family: 'Poppins', sans-serif;
+}
+
+main{
+    background-color: rgba(0, 119, 182, 1);
+}
+
+h2 {
+    text-align: center;
+}
+
+h2, h3 {
+    padding: 2rem 0;
+}
+
+section {
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.about__logo {
+    font-size: 10rem;
+    font-weight: 700;
+    color: #3f8efc;
+    text-align: center;
+    text-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__logo .x {
+    flex: 0 0 150px;
+    left: 50px;
+}
+
+.about__logo .o {
+    flex: 0 0 150px;
+    left: -40px;
+    top: 50px;
+    color: #eee;
+}
+
+.about__game {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.about__game ul {
+    list-style-position: inside;
+    padding-inline-start: 2rem;
+}
+
+.about__game li  {
+    padding: 0.5rem;
+}
+
+.about__game p:not(:first-child) {
+    padding: 1rem 0;
+}
+
+.developers h3 {
+    font-size: calc(1em + 0.5rem);
+}
+
+.developers__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.developers__container .developer {
+    flex: 1 0 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.developers__container .developer__image {
+    border-radius: 50%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    width: 150px;
+    background-color: black;
+}
+
+.developers__container .developer__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.thanks {
+    background-color: rgb(0, 91, 136);
+}
+
+p.thanks__text {
+    opacity: 0.9;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+p.thanks__text a {
+    all: initial;
+    display: inline-block;
+    padding: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 900;
+    cursor: pointer;
+    opacity: 1;
+    background-color: rgb(0, 62, 94);
+    transition: all 0.2s linear;
+}
+
+p.thanks__text a:hover {
+    color: #eee;
+    background-color: rgb(0, 20, 30);
 }
