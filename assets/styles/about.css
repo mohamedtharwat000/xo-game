@@ -15,6 +15,17 @@ main{
     background-color: rgba(0, 119, 182, 1);
 }
 
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    all: inherit;
+    cursor: pointer;
+    display: inline-block;
+}
+
 h2 {
     text-align: center;
 }
@@ -93,9 +104,12 @@ section {
 .developers__container .developer__image {
     border-radius: 50%;
     max-width: 200px;
-    aspect-ratio: 1;
-    width: 150px;
-    background-color: black;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.developers__container .developer__image:hover {
+    transform: scale(110%);
 }
 
 .developers__container .developer__info {
@@ -104,6 +118,11 @@ section {
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.developers__container .developer__info h4 {
+    padding: 0.2rem;
+    background-color: rgb(0, 100, 150);
 }
 
 .thanks {
@@ -118,12 +137,9 @@ p.thanks__text {
 }
 
 p.thanks__text a {
-    all: initial;
-    display: inline-block;
     padding: 0.5rem;
     font-size: 1.6rem;
     font-weight: 900;
-    cursor: pointer;
     opacity: 1;
     background-color: rgb(0, 62, 94);
     transition: all 0.2s linear;
