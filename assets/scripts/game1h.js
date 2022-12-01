@@ -65,7 +65,15 @@ let draw = false;
 for (let letter of chooseLetter) {
   letter.addEventListener("click", function () {
     player.letter = letter.innerHTML;
-    value = player.letter;
+    // value = player.letter;
+    if (player.letter === "O") {
+      for (let button of buttons) {
+        button.removeEventListener("click", game);
+      }
+      setTimeout(function () {
+        nextMove();
+      }, 1000);
+    }
     letter.parentElement.parentElement.classList.add("hide");
   });
 }
@@ -77,19 +85,15 @@ for (let button of buttons) {
 
 // main function with all game logic
 function game(event) {
-  event.target.innerHTML = value;
   clickCount++;
+  event.target.innerHTML = value;
 
   fillMatrix(event.target);
   winner();
   showPopup();
 
-  value = value === "X" ? (value = "O") : (value = "X");
-
-  for (let button of buttons) {
-    button.removeEventListener("click", game);
-  }
-
+  value = value === "X" ? "O" : "X";
+  event.target.removeEventListener("click", game);
   setTimeout(nextMove, 1000);
 }
 
@@ -99,7 +103,7 @@ newGameBtn.addEventListener("click", restartFn);
 
 // restart function
 function restartFn() {
-  for (button of buttons) {
+  for (let button of buttons) {
     button.innerHTML = "";
     button.addEventListener("click", game);
   }
@@ -122,11 +126,9 @@ function restartFn() {
   player.letter = "";
 
   buttonsArr.forEach(function (value, index, arr) {
-    if (value === arr[4]) {
-      value.dataset.priority = "2";
-    } else {
-      value.dataset.priority = "1";
-    }
+    value === arr[4]
+      ? (value.dataset.priority = "2")
+      : (value.dataset.priority = "1");
   });
 
   if (!popup.classList.contains("hide")) {
@@ -213,7 +215,7 @@ function winner() {
       }
     }
   }
-  if (clickCount === 9) {
+  if (clickCount === 9 && xWin === false && oWin === false) {
     draw = true;
   }
 }
@@ -234,44 +236,37 @@ function showPopup() {
 
 // next move function
 function nextMove() {
+  clickCount++;
+  for (let button of buttons) {
+    button.removeEventListener("click", game);
+  }
+
   for (let a in matrixButtons) {
     for (let b in matrixButtons[a]) {
       for (let c in matrixButtons[a][b]) {
         let innerValue = matrixValues[a][b][c];
-        let outerValue = matrixButtons[a][b];
+        let button = matrixButtons[a][b];
         switch (c) {
           case "0":
             // start medium mode function
-            if (innerValue === "X" || innerValue === "O") {
-              outerValue[1].dataset.priority = (
-                4 + Number(outerValue[1].dataset.priority)
+            if (innerValue !== undefined) {
+              button[1].dataset.priority = (
+                2 + Number(button[1].dataset.priority)
               ).toString();
-              outerValue[2].dataset.priority = (
-                2 + Number(outerValue[2].dataset.priority)
+              button[2].dataset.priority = (
+                1 + Number(button[2].dataset.priority)
               ).toString();
               // end medium mode function
 
               // start hard mode function
               if (innerValue === matrixValues[a][b][1]) {
-                if (innerValue === value) {
-                  outerValue[2].dataset.priority = (
-                    4 * Number(outerValue[2].dataset.priority)
-                  ).toString();
-                } else {
-                  outerValue[2].dataset.priority = (
-                    2 * Number(outerValue[2].dataset.priority)
-                  ).toString();
-                }
+                button[2].dataset.priority = (
+                  2 * Number(button[2].dataset.priority)
+                ).toString();
               } else if (innerValue === matrixValues[a][b][2]) {
-                if (innerValue === value) {
-                  outerValue[1].dataset.priority = (
-                    4 * Number(outerValue[1].dataset.priority)
-                  ).toString();
-                } else {
-                  outerValue[1].dataset.priority = (
-                    2 * Number(outerValue[1].dataset.priority)
-                  ).toString();
-                }
+                button[1].dataset.priority = (
+                  2 * Number(button[1].dataset.priority)
+                ).toString();
               }
               // end hard mode function
             }
@@ -279,36 +274,24 @@ function nextMove() {
 
           case "1":
             // start medium mode function
-            if (innerValue === "X" || innerValue === "O") {
-              outerValue[0].dataset.priority = (
-                2 + Number(outerValue[0].dataset.priority)
+            if (innerValue !== undefined) {
+              button[0].dataset.priority = (
+                1 + Number(button[0].dataset.priority)
               ).toString();
-              outerValue[2].dataset.priority = (
-                2 + Number(outerValue[2].dataset.priority)
+              button[2].dataset.priority = (
+                1 + Number(button[2].dataset.priority)
               ).toString();
               // end medium mode function
 
               // start hard mode function
               if (innerValue === matrixValues[a][b][0]) {
-                if (innerValue === value) {
-                  outerValue[2].dataset.priority = (
-                    4 * Number(outerValue[2].dataset.priority)
-                  ).toString();
-                } else {
-                  outerValue[2].dataset.priority = (
-                    2 * Number(outerValue[2].dataset.priority)
-                  ).toString();
-                }
+                button[2].dataset.priority = (
+                  2 * Number(button[2].dataset.priority)
+                ).toString();
               } else if (innerValue === matrixValues[a][b][2]) {
-                if (innerValue === value) {
-                  outerValue[0].dataset.priority = (
-                    4 * Number(outerValue[0].dataset.priority)
-                  ).toString();
-                } else {
-                  outerValue[0].dataset.priority = (
-                    2 * Number(outerValue[0].dataset.priority)
-                  ).toString();
-                }
+                button[0].dataset.priority = (
+                  2 * Number(button[0].dataset.priority)
+                ).toString();
               }
               // end hard mode function
             }
@@ -316,37 +299,24 @@ function nextMove() {
 
           case "2":
             // start medium mode function
-            if (innerValue === "X" || innerValue === "O") {
-              outerValue[0].dataset.priority = (
-                2 + Number(outerValue[0].dataset.priority)
+            if (innerValue !== undefined) {
+              button[0].dataset.priority = (
+                1 + Number(button[0].dataset.priority)
               ).toString();
-              outerValue[1].dataset.priority = (
-                4 + Number(outerValue[1].dataset.priority)
+              button[1].dataset.priority = (
+                2 + Number(button[1].dataset.priority)
               ).toString();
               // end medium mode function
 
               // start hard mode function
               if (innerValue === matrixValues[a][b][0]) {
-                if (innerValue === value) {
-                  outerValue[1].dataset.priority = (
-                    4 * Number(outerValue[1].dataset.priority)
-                  ).toString();
-                  v;
-                } else {
-                  outerValue[1].dataset.priority = (
-                    2 * Number(outerValue[1].dataset.priority)
-                  ).toString();
-                }
+                button[1].dataset.priority = (
+                  2 * Number(button[1].dataset.priority)
+                ).toString();
               } else if (innerValue === matrixValues[a][b][1]) {
-                if (innerValue === value) {
-                  outerValue[0].dataset.priority = (
-                    4 * Number(outerValue[0].dataset.priority)
-                  ).toString();
-                } else {
-                  outerValue[0].dataset.priority = (
-                    2 * Number(outerValue[0].dataset.priority)
-                  ).toString();
-                }
+                button[0].dataset.priority = (
+                  2 * Number(button[0].dataset.priority)
+                ).toString();
               }
               // end hard mode function
             }
@@ -364,21 +334,21 @@ function nextMove() {
     return value.innerHTML === "";
   });
 
-  clickCount++;
-
-  if (emptyButtonsArr[0] === undefined) {
-    return;
-  } else {
+  if (emptyButtonsArr[0] !== undefined) {
     emptyButtonsArr[0].innerHTML = value;
+    fillMatrix(emptyButtonsArr[0]);
+    winner();
+    showPopup();
+  } else {
     winner();
     showPopup();
   }
 
   for (let button of buttons) {
-    if (button.innerHTML === "") {
-      button.addEventListener("click", game);
-    }
+    button.innerHTML === ""
+      ? button.addEventListener("click", game)
+      : undefined;
   }
 
-  value = value === "X" ? (value = "O") : (value = "X");
+  value = value === "X" ? "O" : "X";
 }
