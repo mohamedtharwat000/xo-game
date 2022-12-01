@@ -21,7 +21,7 @@ img {
 }
 
 a {
-    all: inherit;
+    all: unset;
     cursor: pointer;
     display: inline-block;
 }
