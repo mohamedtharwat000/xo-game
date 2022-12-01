@@ -123,6 +123,13 @@ section {
 .developers__container .developer__info h4 {
     padding: 0.2rem;
     background-color: rgb(0, 100, 150);
+    border-radius: 5px;
+    transition: all 0.2s linear;
+}
+
+.developers__container .developer__info h4:hover {
+    color: rgb(156, 156, 156);
+    background-color: rgb(0, 50, 75);
 }
 
 .thanks {
