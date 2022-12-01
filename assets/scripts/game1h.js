@@ -251,21 +251,21 @@ function nextMove() {
             // start medium mode function
             if (innerValue !== undefined) {
               button[1].dataset.priority = (
-                2 + Number(button[1].dataset.priority)
+                4 + Number(button[1].dataset.priority)
               ).toString();
               button[2].dataset.priority = (
-                1 + Number(button[2].dataset.priority)
+                2 + Number(button[2].dataset.priority)
               ).toString();
               // end medium mode function
 
               // start hard mode function
               if (innerValue === matrixValues[a][b][1]) {
                 button[2].dataset.priority = (
-                  2 * Number(button[2].dataset.priority)
+                  3 * Number(button[2].dataset.priority)
                 ).toString();
               } else if (innerValue === matrixValues[a][b][2]) {
                 button[1].dataset.priority = (
-                  2 * Number(button[1].dataset.priority)
+                  3 * Number(button[1].dataset.priority)
                 ).toString();
               }
               // end hard mode function
@@ -276,21 +276,21 @@ function nextMove() {
             // start medium mode function
             if (innerValue !== undefined) {
               button[0].dataset.priority = (
-                1 + Number(button[0].dataset.priority)
+                2 + Number(button[0].dataset.priority)
               ).toString();
               button[2].dataset.priority = (
-                1 + Number(button[2].dataset.priority)
+                2 + Number(button[2].dataset.priority)
               ).toString();
               // end medium mode function
 
               // start hard mode function
               if (innerValue === matrixValues[a][b][0]) {
                 button[2].dataset.priority = (
-                  2 * Number(button[2].dataset.priority)
+                  3 * Number(button[2].dataset.priority)
                 ).toString();
               } else if (innerValue === matrixValues[a][b][2]) {
                 button[0].dataset.priority = (
-                  2 * Number(button[0].dataset.priority)
+                  3 * Number(button[0].dataset.priority)
                 ).toString();
               }
               // end hard mode function
@@ -301,21 +301,21 @@ function nextMove() {
             // start medium mode function
             if (innerValue !== undefined) {
               button[0].dataset.priority = (
-                1 + Number(button[0].dataset.priority)
+                2 + Number(button[0].dataset.priority)
               ).toString();
               button[1].dataset.priority = (
-                2 + Number(button[1].dataset.priority)
+                4 + Number(button[1].dataset.priority)
               ).toString();
               // end medium mode function
 
               // start hard mode function
               if (innerValue === matrixValues[a][b][0]) {
                 button[1].dataset.priority = (
-                  2 * Number(button[1].dataset.priority)
+                  3 * Number(button[1].dataset.priority)
                 ).toString();
               } else if (innerValue === matrixValues[a][b][1]) {
                 button[0].dataset.priority = (
-                  2 * Number(button[0].dataset.priority)
+                  3 * Number(button[0].dataset.priority)
                 ).toString();
               }
               // end hard mode function
