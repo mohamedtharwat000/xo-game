@@ -94,7 +94,7 @@ function game(event) {
 
   value = value === "X" ? "O" : "X";
   event.target.removeEventListener("click", game);
-  setTimeout(nextMove, 1000);
+  setTimeout(nextMove, 500);
 }
 
 // code to handle restart the game and reset all to initial values
@@ -222,16 +222,22 @@ function winner() {
 
 // show popup message function
 function showPopup() {
-  if (draw === true || xWin === true || oWin === true) {
-    popup.classList.remove("hide");
-    if (draw === true) {
-      document.getElementById("win-message").innerHTML = "draw";
-    } else if (xWin === true) {
-      document.getElementById("win-message").innerHTML = "X wins";
-    } else if (oWin === true) {
-      document.getElementById("win-message").innerHTML = "O wins";
+  setTimeout(function () {
+    if (draw === true || xWin === true || oWin === true) {
+      popup.classList.remove("hide");
+      if (draw === true) {
+        document.getElementById("win-message").innerHTML = "draw";
+      } else if (player.letter === "X" && xWin === true) {
+        document.getElementById("win-message").innerHTML = "you win";
+      } else if (player.letter === "X" && oWin === true) {
+        document.getElementById("win-message").innerHTML = "you lose";
+      } else if (player.letter === "O" && oWin === true) {
+        document.getElementById("win-message").innerHTML = "you win";
+      } else if (player.letter === "O" && xWin === true) {
+        document.getElementById("win-message").innerHTML = "you lose";
+      }
     }
-  }
+  }, 2000);
 }
 
 // next move function
@@ -246,6 +252,7 @@ function nextMove() {
       for (let c in matrixButtons[a][b]) {
         let innerValue = matrixValues[a][b][c];
         let button = matrixButtons[a][b];
+        let n = innerValue === value ? 2 : 1;
         switch (c) {
           case "0":
             // start medium mode function
@@ -261,11 +268,15 @@ function nextMove() {
               // start hard mode function
               if (innerValue === matrixValues[a][b][1]) {
                 button[2].dataset.priority = (
-                  3 * Number(button[2].dataset.priority)
+                  4 *
+                  n *
+                  Number(button[2].dataset.priority)
                 ).toString();
               } else if (innerValue === matrixValues[a][b][2]) {
                 button[1].dataset.priority = (
-                  3 * Number(button[1].dataset.priority)
+                  4 *
+                  n *
+                  Number(button[1].dataset.priority)
                 ).toString();
               }
               // end hard mode function
@@ -286,11 +297,15 @@ function nextMove() {
               // start hard mode function
               if (innerValue === matrixValues[a][b][0]) {
                 button[2].dataset.priority = (
-                  3 * Number(button[2].dataset.priority)
+                  4 *
+                  n *
+                  Number(button[2].dataset.priority)
                 ).toString();
               } else if (innerValue === matrixValues[a][b][2]) {
                 button[0].dataset.priority = (
-                  3 * Number(button[0].dataset.priority)
+                  4 *
+                  n *
+                  Number(button[0].dataset.priority)
                 ).toString();
               }
               // end hard mode function
@@ -311,11 +326,15 @@ function nextMove() {
               // start hard mode function
               if (innerValue === matrixValues[a][b][0]) {
                 button[1].dataset.priority = (
-                  3 * Number(button[1].dataset.priority)
+                  4 *
+                  n *
+                  Number(button[1].dataset.priority)
                 ).toString();
               } else if (innerValue === matrixValues[a][b][1]) {
                 button[0].dataset.priority = (
-                  3 * Number(button[0].dataset.priority)
+                  4 *
+                  n *
+                  Number(button[0].dataset.priority)
                 ).toString();
               }
               // end hard mode function
