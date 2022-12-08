@@ -104,8 +104,8 @@ h2 {
 
 .profile-user .user-info {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -113,13 +113,11 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 200px;
+  max-width: 280px; /* maximum width for profile image */
 }
 
 .user-pic img {
-  /* mix-blend-mode: multiply; */
   max-width: 100%;
-  width: 200px; /*for testing*/
 }
 
 .user-pic p {
@@ -135,7 +133,8 @@ h2 {
 
 .profile-control {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -144,6 +143,7 @@ h2 {
   background-color: var(--color-2);
   padding: 20px;
   cursor: pointer;
+  width: 200px;
 }
 
 .profile-control > button > span {
@@ -345,16 +345,8 @@ h2 {
     flex: 1;
   }
 
-  .profile-user > figure {
+  .profile-user > .user-info {
     flex-direction: row;
-  }
-
-  .profile-user > figure > figcaption {
-    align-self: center;
-  }
-
-  .profile-user > figure > figcaption > h2 {
-    padding: 20px;
   }
 
   .profile-user > .profile-control {
