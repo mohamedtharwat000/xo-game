@@ -23,43 +23,55 @@ let divReset = document.querySelector(".resetData");
 let confirmReset = document.querySelector(".resetProfileYes");
 // button to cancel the reset
 let cancelReset = document.querySelector(".resetProfileNo");
+let saveEditProfile = document.getElementsByClassName("savePlayerName")[0];
+let cancelEditProfile = document.getElementsByClassName("cancelPlayerName")[0];
 
+let imgg = "";
 // the edit button show the (input) which change the name of the player
 //and (input image )  to change the image of the player
 btnEditProfile.addEventListener("click", () => {
   divEditdata.classList.toggle("hidden");
   divReset.classList.add("hidden");
 });
-// change player name when input value in changePlayerName input to playerName
-// and save it in local storage
-//when change that mean when click out the input
-changePlayerName.addEventListener("change", (e) => {
-  playerName.textContent = e.target.value;
-  localStorage.setItem("playerName", e.target.value);
-});
 
-//that the same as above but using Enter key in keyboard
-changePlayerName.addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
-    playerName.textContent = e.target.value;
-    localStorage.setItem("playerName", e.target.value);
-  }
-});
+// cancel the edit and hide the input
 
 //that function to change the image of the player
 uploadProfilePic.addEventListener("change", function () {
-  if (this.files && this.files[0]) {
+  //   show image in profile pic
+  if (uploadProfilePic.files && uploadProfilePic.files[0]) {
     var img = profilePic;
     img.onload = () => {
       URL.revokeObjectURL(img.src); // no longer needed, free memory
     };
-    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+    img.src = URL.createObjectURL(uploadProfilePic.files[0]); // set src to blob url
   }
+});
+
+// do same thing when click on save button
+saveEditProfile.addEventListener("click", (e) => {
+  playerName.textContent = changePlayerName.value;
+  localStorage.setItem("playerName", changePlayerName.value);
+  divEditdata.classList.toggle("hidden");
+  if (uploadProfilePic.files && uploadProfilePic.files[0]) {
+    var img = profilePic;
+    img.onload = () => {
+      URL.revokeObjectURL(img.src); // no longer needed, free memory
+    };
+    img.src = URL.createObjectURL(uploadProfilePic.files[0]); // set src to blob url
+  }
+});
+cancelEditProfile.addEventListener("click", (e) => {
+  divEditdata.classList.toggle("hidden");
+
+  //go back to profile pic
+  imgg = localStorage.getItem("profilePic");
+  profilePic.src = imgg;
 });
 
 // Take action when the image has loaded (save it in local storage)
 profilePic.addEventListener(
-  "load",
+  "change",
   function () {
     var imgCanvas = document.createElement("canvas"),
       imgContext = imgCanvas.getContext("2d");
@@ -77,7 +89,7 @@ profilePic.addEventListener(
     // Save image into localStorage
     try {
       localStorage.setItem("profilePic", imgAsDataURL);
-      console.log("Profile picture saved.");
+      //   console.log("Profile picture saved.");
     } catch (e) {
       console.log("Storage failed: " + e);
     }
@@ -117,8 +129,8 @@ for (let i = 0; i < arrStdata.length; i++) {
     `;
   //   historyList.appendChild(div);
 }
-console.log(arrStdata);
-console.log(historyList);
+// console.log(arrStdata);
+// console.log(historyList);
 
 // add historyList to local storage
 localStorage.setItem("historyList", JSON.stringify(arrStdata));
@@ -128,7 +140,7 @@ localStorage.setItem("historyList", JSON.stringify(arrStdata));
 let historyListData = JSON.parse(localStorage.getItem("historyList"));
 
 // console.log(arrData);
-console.log(arrStdata);
+// console.log(arrStdata);
 const getProfileStatus = () => {
   const data = {
     wins: 0,
