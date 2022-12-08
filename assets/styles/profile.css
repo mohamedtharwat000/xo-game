@@ -369,7 +369,6 @@ h2 {
   }
 }
 
-/* max width 400 */
 @media (max-width: 400px) {
   main > h1,
   h2 {
