@@ -13,7 +13,7 @@ body {
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 13rem;
+    padding-top: 3rem;
     height: 100vh;
 }
 
@@ -25,8 +25,8 @@ div.row {
 }
 
 div.single {
-    height: 128px;
-    width: 128px;
+    height: 160px;
+    width: 160px;
     background: #fff;
     margin: 0.5rem 0;
     padding: 0;
@@ -46,15 +46,15 @@ div#infodisplay {
     height: 96px;
     font-size: 2.5rem;
     color: #fff;
+    padding-top: 9rem;
 }
 
 div.playerchoice button {
     display: inline-block;
-    width: 100px;
+    width: 120px;
     height: 100px;
-    font-size: 5rem;
-    font-weight: bold;
-    background: #04214b;
+    font-size: 3rem;
+    background: #0a0027;
     color: #fff;
     cursor: pointer;
     outline: none;
@@ -86,6 +86,18 @@ div.playagain button {
 
 .hidden {
     display: none;
+}
+
+.gp {
+    position: relative;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 2px 0;
+}
+
+.gamePage {
+    font-size: 2rem;
+    text-align: center;
+    color: white;
 }
 
 @media (max-width: 400px) {

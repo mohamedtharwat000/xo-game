@@ -12,14 +12,12 @@
 /* that for the body */
 body {
   height: 100vh;
-  background: linear-gradient(
-    to right,
-    #04214b,
-    #003170,
-    #004298,
-    #0054c1,
-    #1265eb
-  );
+  background: linear-gradient(to right,
+      #04214b,
+      #003170,
+      #004298,
+      #0054c1,
+      #1265eb);
 }
 
 /* that for the h1 GamePage */
@@ -73,14 +71,12 @@ h1 {
 
 /* styles of the popup that will appear when game is over */
 .popup {
-  background: linear-gradient(
-    to right,
-    #04214b,
-    #003170,
-    #004298,
-    #0054c1,
-    #1265eb
-  );
+  background: linear-gradient(to right,
+      #04214b,
+      #003170,
+      #004298,
+      #0054c1,
+      #1265eb);
   height: 100%;
   width: 100%;
   position: absolute;
@@ -94,7 +90,8 @@ h1 {
 }
 
 /* styles of the newgame button */
-#new-game, .letter-button {
+#new-game,
+.letter-button {
   font-size: 0.6em;
   padding: 0.5em 1em;
   background-color: #0a0027;
@@ -135,9 +132,11 @@ h1 {
     font-size: 1.5rem;
     margin-top: 5rem;
   }
+
   .popup {
     font-size: 16vmin;
   }
+
   #message {
     font-size: 1.2em;
   }
