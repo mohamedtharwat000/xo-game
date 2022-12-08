@@ -63,39 +63,49 @@ saveEditProfile.addEventListener("click", (e) => {
 });
 cancelEditProfile.addEventListener("click", (e) => {
   divEditdata.classList.toggle("hidden");
-
+  changePlayerName.value = "";
   //go back to profile pic
   imgg = localStorage.getItem("profilePic");
-  profilePic.src = imgg;
+  //   if imgg is null then show default image
+  if (imgg === null) {
+    profilePic.src = "../assets/Images/profile/avatar.jpg";
+  } else {
+    profilePic.src = imgg;
+  }
+  // Take action when the image has loaded (save it in local storage)
+  profilePic.addEventListener(
+    "load",
+    function () {
+      var imgCanvas = document.createElement("canvas"),
+        imgContext = imgCanvas.getContext("2d");
+
+      // Make sure canvas is as big as the picture
+      imgCanvas.width = profilePic.width;
+      imgCanvas.height = profilePic.height;
+
+      // Draw image into canvas element
+      imgContext.drawImage(
+        profilePic,
+        0,
+        0,
+        profilePic.width,
+        profilePic.height
+      );
+
+      // Get canvas contents as a data URL
+      var imgAsDataURL = imgCanvas.toDataURL("image/png");
+
+      // Save image into localStorage
+      try {
+        localStorage.setItem("profilePic", imgAsDataURL);
+        //   console.log("Profile picture saved.");
+      } catch (e) {
+        console.log("Storage failed: " + e);
+      }
+    },
+    false
+  );
 });
-
-// Take action when the image has loaded (save it in local storage)
-profilePic.addEventListener(
-  "change",
-  function () {
-    var imgCanvas = document.createElement("canvas"),
-      imgContext = imgCanvas.getContext("2d");
-
-    // Make sure canvas is as big as the picture
-    imgCanvas.width = profilePic.width;
-    imgCanvas.height = profilePic.height;
-
-    // Draw image into canvas element
-    imgContext.drawImage(profilePic, 0, 0, profilePic.width, profilePic.height);
-
-    // Get canvas contents as a data URL
-    var imgAsDataURL = imgCanvas.toDataURL("image/png");
-
-    // Save image into localStorage
-    try {
-      localStorage.setItem("profilePic", imgAsDataURL);
-      //   console.log("Profile picture saved.");
-    } catch (e) {
-      console.log("Storage failed: " + e);
-    }
-  },
-  false
-);
 
 //load recent games history from local storage if exist
 const getRecentGamesData = () => {
