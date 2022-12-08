@@ -25,8 +25,8 @@ div.row {
 }
 
 div.single {
-    height: 160px;
-    width: 160px;
+    height: 110px;
+    width: 110px;
     background: #fff;
     margin: 0.5rem 0;
     padding: 0;
@@ -46,6 +46,7 @@ div#infodisplay {
     height: 96px;
     font-size: 2.5rem;
     color: #fff;
+    padding-top: 5rem;
 }
 
 div.playerchoice button {
