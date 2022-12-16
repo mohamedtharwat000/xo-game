@@ -5,127 +5,123 @@ let countLosses = document.querySelector(".count-losses span");
 let countDraw = document.querySelector(".count-draws span");
 let countTotal = document.querySelector(".count-total   span");
 let rate = document.querySelector(".count-rate  span");
-
 let playerName = document.querySelector(".playerName");
 let changePlayerName = document.getElementById("changePlayerName");
 let divEditdata = document.querySelector(".editData");
 let btnEditProfile = document.querySelector(".editProfile");
-// console.log(countDraw);
-// console.log(historyList);
 
 // Reset button
 let resetBtn = document.querySelector(".resetProfile");
-
-btnEditProfile.addEventListener("click", () => {
-  divEditdata.classList.toggle("hidden");
-});
-
+//pic of the player
 let profilePic = document.getElementById("profilePic");
-console.log(profilePic);
+// input of file (image )
 let uploadProfilePic = document.querySelector(".uploadProfilePic");
 
-// change player name when input value in changePlayerName input to playerName
-changePlayerName.addEventListener("change", (e) => {
-  playerName.textContent = e.target.value;
+// div to insure that the user is sure to reset the profile
+let divReset = document.querySelector(".resetData");
+// button to confirm the reset
+let confirmReset = document.querySelector(".resetProfileYes");
+// button to cancel the reset
+let cancelReset = document.querySelector(".resetProfileNo");
+let saveEditProfile = document.getElementsByClassName("savePlayerName")[0];
+let cancelEditProfile = document.getElementsByClassName("cancelPlayerName")[0];
 
-  //   add player name to local storage
-  localStorage.setItem("playerName", e.target.value);
+let imgg = "";
+// the edit button show the (input) which change the name of the player
+//and (input image )  to change the image of the player
+btnEditProfile.addEventListener("click", () => {
+  divEditdata.classList.toggle("hidden");
+  divReset.classList.add("hidden");
 });
-changePlayerName.addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
-    playerName.textContent = e.target.value;
 
-    //   add player name to local storage
-    localStorage.setItem("playerName", e.target.value);
-  }
-});
+// cancel the edit and hide the input
 
+//that function to change the image of the player
 uploadProfilePic.addEventListener("change", function () {
-  if (this.files && this.files[0]) {
+  //   show image in profile pic
+  if (uploadProfilePic.files && uploadProfilePic.files[0]) {
     var img = profilePic;
     img.onload = () => {
       URL.revokeObjectURL(img.src); // no longer needed, free memory
     };
-
-    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-
-    // imgData = getBase64Image(img);
-    // localStorage.setItem("imgData", imgData);
-    // localStorage.setItem("profilePic", img.src);
+    img.src = URL.createObjectURL(uploadProfilePic.files[0]); // set src to blob url
   }
-  //save image to local storage
 });
 
-// Take action when the image has loaded
-profilePic.addEventListener(
-  "load",
-  function () {
-    var imgCanvas = document.createElement("canvas"),
-      imgContext = imgCanvas.getContext("2d");
+// do same thing when click on save button
+saveEditProfile.addEventListener("click", (e) => {
+  playerName.textContent = changePlayerName.value;
+  localStorage.setItem("playerName", changePlayerName.value);
+  divEditdata.classList.toggle("hidden");
+  if (uploadProfilePic.files && uploadProfilePic.files[0]) {
+    var img = profilePic;
+    img.onload = () => {
+      URL.revokeObjectURL(img.src); // no longer needed, free memory
+    };
+    img.src = URL.createObjectURL(uploadProfilePic.files[0]); // set src to blob url
+  }
+});
+cancelEditProfile.addEventListener("click", (e) => {
+  divEditdata.classList.toggle("hidden");
+  changePlayerName.value = "";
+  //go back to profile pic
+  imgg = localStorage.getItem("profilePic");
+  //   if imgg is null then show default image
+  if (imgg === null) {
+    profilePic.src = "../assets/Images/profile/avatar.jpg";
+  } else {
+    profilePic.src = imgg;
+  }
+  // Take action when the image has loaded (save it in local storage)
+  profilePic.addEventListener(
+    "load",
+    function () {
+      var imgCanvas = document.createElement("canvas"),
+        imgContext = imgCanvas.getContext("2d");
 
-    // Make sure canvas is as big as the picture
-    imgCanvas.width = profilePic.width;
-    imgCanvas.height = profilePic.height;
+      // Make sure canvas is as big as the picture
+      imgCanvas.width = profilePic.width;
+      imgCanvas.height = profilePic.height;
 
-    // Draw image into canvas element
-    imgContext.drawImage(profilePic, 0, 0, profilePic.width, profilePic.height);
+      // Draw image into canvas element
+      imgContext.drawImage(
+        profilePic,
+        0,
+        0,
+        profilePic.width,
+        profilePic.height
+      );
 
-    // Get canvas contents as a data URL
-    var imgAsDataURL = imgCanvas.toDataURL("image/png");
+      // Get canvas contents as a data URL
+      var imgAsDataURL = imgCanvas.toDataURL("image/png");
 
-    // Save image into localStorage
-    try {
-      localStorage.setItem("profilePic", imgAsDataURL);
-      console.log("Profile picture saved.");
-    } catch (e) {
-      console.log("Storage failed: " + e);
-    }
-  },
-  false
-);
+      // Save image into localStorage
+      try {
+        localStorage.setItem("profilePic", imgAsDataURL);
+        //   console.log("Profile picture saved.");
+      } catch (e) {
+        console.log("Storage failed: " + e);
+      }
+    },
+    false
+  );
+});
 
+//load recent games history from local storage if exist
 const getRecentGamesData = () => {
-  const data = [
-    {
-      status: "win",
-      date: "08:17:13AM, 25/10/2022",
-    },
-    {
-      status: "lose",
-      date: "12:17:13AM, 22/10/2022",
-    },
-    {
-      status: "lose",
-      date: "03:17:13PM, 21/10/2022",
-    },
-    {
-      status: "win",
-      date: "01:17:13AM, 21/10/2022",
-    },
-    {
-      status: "draw",
-      date: "11:17:13AM, 20/10/2022",
-    },
-  ];
-
+  // get gamesHistory from local storage
+  let data = JSON.parse(localStorage.getItem("gamesHistory")) || [];
   return data;
 };
 
-// destructuring RecentGamesData
-
-// save objects in data in array
-
-// let arrData = [];
+//that to put recent games history in array and show later in profile.html
 let arrStdata = [];
-
 for (let i = 0; i < getRecentGamesData().length; i++) {
-  arri = [getRecentGamesData()[i].status, getRecentGamesData()[i].date];
+  arri = [getRecentGamesData()[i].state, getRecentGamesData()[i].date];
   arrStdata.push(arri);
-  //   arrData.push(getRecentGamesData()[i]);
 }
 
 // add all arrStdata to historyList inside a div
-
 for (let i = 0; i < arrStdata.length; i++) {
   let div = document.createElement("div");
   if (arrStdata[i][0] === "win") {
@@ -141,11 +137,12 @@ for (let i = 0; i < arrStdata.length; i++) {
     </div>
     <div class="history-item__date">${arrStdata[i][1]}</div>
     `;
-  historyList.appendChild(div);
+  //   historyList.appendChild(div);
 }
+// console.log(arrStdata);
+// console.log(historyList);
 
 // add historyList to local storage
-
 localStorage.setItem("historyList", JSON.stringify(arrStdata));
 
 // get historyList from local storage
@@ -153,14 +150,25 @@ localStorage.setItem("historyList", JSON.stringify(arrStdata));
 let historyListData = JSON.parse(localStorage.getItem("historyList"));
 
 // console.log(arrData);
-console.log(arrStdata);
+// console.log(arrStdata);
 const getProfileStatus = () => {
   const data = {
-    wins: 20,
-    losses: 50,
-    draw: 30,
+    wins: 0,
+    losses: 0,
+    draw: 0,
   };
 
+  // get gamesHistory from local storage
+  let datas = JSON.parse(localStorage.getItem("gamesHistory")) || [];
+  for (let i = 0; i < datas.length; i++) {
+    if (datas[i].state === "win") {
+      data.wins++;
+    } else if (datas[i].state === "lose") {
+      data.losses++;
+    } else {
+      data.draw++;
+    }
+  }
   return data;
 };
 
@@ -174,13 +182,6 @@ localStorage.setItem("wins", wins);
 localStorage.setItem("losses", losses);
 localStorage.setItem("draw", draw);
 
-// pass value of wins losses and draw to countWins countLosses and countDraw
-// countTotal.innerHTML =
-//   getProfileStatus().wins + getProfileStatus().losses + getProfileStatus().draw;
-// countWins.innerHTML = getProfileStatus().wins;
-// countLosses.innerHTML = getProfileStatus().losses;
-// countDraw.innerHTML = getProfileStatus().draw;
-
 countTotal.innerHTML = wins + losses + draw;
 countWins.innerHTML = wins;
 countLosses.innerHTML = losses;
@@ -188,24 +189,36 @@ countDraw.innerHTML = draw;
 
 // calculate rate
 let rateValue = (getProfileStatus().wins / countTotal.innerHTML) * 100;
-rate.innerHTML = rateValue.toFixed(2);
 
-// get data from local storage when page is loaded
-
-// window.addEventListener("load", function () {
-// get profilePic from local storage
-//   let profilePicData = localStorage.getItem("profilePic");
-//   if (profilePicData) {
-//     profilePic.src = profilePicData;
-//   }
-// });
+// add rateValue to rate innerHTML if rateValue is not NaN
+if (!isNaN(rateValue)) {
+  rate.innerHTML = rateValue.toFixed(2);
+} else {
+  rate.innerHTML = "0";
+}
 
 // reset button clear all data from page and local storage
 resetBtn.addEventListener("click", () => {
-  localStorage.clear();
-  location.reload();
+  //   localStorage.clear();
+  //   location.reload();
+  //show popup to confirm reset
+  divReset.classList.toggle("hidden");
+
+  //   remove div of edit file
+  divEditdata.classList.add("hidden");
+
+  // confirm reset
+  confirmReset.addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
+  });
+  // cancel reset
+  cancelReset.addEventListener("click", () => {
+    divReset.classList.add("hidden");
+  });
 });
 
+// get data from local storage  and show it in profile.html
 // make that with document because it's faster than window
 document.addEventListener("DOMContentLoaded", function () {
   // get profilePic from local storage
@@ -233,7 +246,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   // calculate rate
   let rateValue = (winsData / countTotal.innerHTML) * 100;
-  rate.innerHTML = rateValue.toFixed(2);
+  //   rate.innerHTML = rateValue.toFixed(2);
+
+  if (!isNaN(rateValue)) {
+    rate.innerHTML = rateValue.toFixed(2);
+  } else {
+    rate.innerHTML = "0";
+  }
 
   // get historyList from local storage
   let historyListData = JSON.parse(localStorage.getItem("historyList"));

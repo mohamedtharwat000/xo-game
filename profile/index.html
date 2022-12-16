@@ -39,26 +39,12 @@
                     <div class="user-info">
                         <div class="user-pic">
                             <img src="../assets/Images/profile/avatar.jpg" alt="user pic" id="profilePic">
-                            <!-- <p>
-                                <a target="_blank"
-                                    href="https://www.freepik.com/free-vector/businessman-character-avatar-isolated_6769264.htm#query=avatar&from_query=guest%20avatar&position=3&from_view=search&track=sph">
-                                    Image by studiogstock
-                                </a>
-                                <span>on Freepik</span>
-                            </p> -->
+
                         </div>
                         <h2 class="playerName">Player 1</h2>
                     </div>
-
                     <div class="profile-control">
-                        <button class="editProfile"><span>Edit Profile</span>
-
-                            <!-- make a slider menu inside the button -->
-
-
-
-
-                        </button>
+                        <button class="editProfile"><span>Edit Profile</span></button>
                         <button class="resetProfile"><span>Reset Profile</span></button>
                     </div>
                 </section>
@@ -68,12 +54,30 @@
                     <label class="changePlayerr">
                         <span>Player Name</span>
                         <input type="text" id="changePlayerName">
+                        <!-- make button to save when click on it  -->
                     </label>
-
-
                     <label for="files" class="btn "> Change profile image</label>
                     <input id="files" type="file" class="uploadProfilePic" accept="image/*" style="display: none;" />
+                    <div class="saveedits">
+                        <button class="savePlayerName">Save</button>
+                        <button class="cancelPlayerName">cancel</button>
+                    </div>
                 </div>
+
+                <!-- <div class="resetData hidden">
+                    <p>Are you sure you want to reset your profile?</p>
+                    <button class="resetProfileYes">Yes</button>
+                    <button class="resetProfileNo">No</button>
+                </div> -->
+
+                <div class="resetData hidden">
+                    <h1>Confirm Reset</h1>
+                    <p>Are you really <em>really</em> <strong>really</strong> sure that you want to exit this awesome
+                        application?</p>
+                    <button class="resetProfileNo">Cancel</button>
+                    <button class="resetProfileYes" autofocus>Confirm</button>
+                </div>
+
 
 
                 <section class="profile-statistics">

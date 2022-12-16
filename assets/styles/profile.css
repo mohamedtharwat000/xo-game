@@ -37,6 +37,65 @@ h2 {
   padding: 40px 20px 20px 20px;
 }
 
+/* popup of reset button */
+.resetData {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  min-width: 280px;
+  max-width: 500px;
+  height: auto;
+  background: #e2e2e2;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid white;
+  animation: fade 1s ease 1 forwards;
+  z-index: 100;
+}
+.resetData h1 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 1.5rem 1rem 0.5rem;
+}
+.resetData p {
+  text-align: center;
+  font-size: 1rem;
+  margin: 0 2rem 4.5rem;
+}
+.resetData button {
+  background: transparent;
+  border: none;
+  color: #1678e5;
+  height: 3rem;
+  font-size: 1rem;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+.resetData button:nth-of-type(1) {
+  border-top: 1px solid #b4b4b4;
+  border-right: 1px solid #b4b4b4;
+  left: 0;
+  border-radius: 0 0 0 10px;
+}
+.resetData button:nth-of-type(2) {
+  border-top: 1px solid #b4b4b4;
+  right: 0;
+  border-radius: 0 0 10px 0;
+}
+.resetData button:focus,
+.resetData button:hover {
+  font-weight: bold;
+  background: #efefef;
+}
+.resetData button:active {
+  background: #d6d6d6;
+}
+
 .profile,
 .profile-user {
   display: flex;
@@ -45,21 +104,20 @@ h2 {
 
 .profile-user .user-info {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .profile-user .user-pic {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 200px;
+  max-width: 280px; /* maximum width for profile image */
 }
 
 .user-pic img {
-  /* mix-blend-mode: multiply; */
   max-width: 100%;
-  width: 200px; /*for testing*/
 }
 
 .user-pic p {
@@ -75,7 +133,8 @@ h2 {
 
 .profile-control {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -84,6 +143,7 @@ h2 {
   background-color: var(--color-2);
   padding: 20px;
   cursor: pointer;
+  width: 200px;
 }
 
 .profile-control > button > span {
@@ -212,6 +272,35 @@ h2 {
   border: 1px solid #000;
   text-align: center;
 }
+
+.saveedits {
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: var(--color-2);
+  /* cursor: pointer; */
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.saveedits > button {
+  width: 40%;
+  float: left;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.savePlayerName {
+  background-color: chartreuse;
+}
+
+.cancelPlayerName {
+  background-color: red;
+}
 .btn {
   border: 2px solid #6c5ce7;
   padding: 0.2em 0.4em;
@@ -242,7 +331,8 @@ h2 {
 @media (min-width: 768px) {
   main > h1,
   h2 {
-    text-align: initial;
+    /* text-align: center; */
+    font-size: 1.5rem;
   }
 
   .profile-user {
@@ -255,16 +345,8 @@ h2 {
     flex: 1;
   }
 
-  .profile-user > figure {
+  .profile-user > .user-info {
     flex-direction: row;
-  }
-
-  .profile-user > figure > figcaption {
-    align-self: center;
-  }
-
-  .profile-user > figure > figcaption > h2 {
-    padding: 20px;
   }
 
   .profile-user > .profile-control {
@@ -276,5 +358,13 @@ h2 {
 
   .profile-user > .profile-control > button {
     flex: 0 0 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  main > h1,
+  h2 {
+    /* text-align: center; */
+    font-size: 1.25rem;
   }
 }
