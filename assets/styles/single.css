@@ -95,19 +95,4 @@ div.playagain button {
         font-size: 1.5rem;
         color: #fff;
     }
-
-    div.playerchoice button {
-        display: inline-block;
-        width: 90px;
-        height: 90px;
-        font-size: 3rem;
-        font-weight: bold;
-        color: #fff;
-        cursor: pointer;
-        outline: none;
-        border: none;
-        border-radius: 0.5rem;
-        margin: 0 0.9rem;
-        margin-bottom: 5rem;
-    }
 }
