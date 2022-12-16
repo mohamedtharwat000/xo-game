@@ -120,6 +120,7 @@ for (let i = 0; i < getRecentGamesData().length; i++) {
   arri = [getRecentGamesData()[i].state, getRecentGamesData()[i].date];
   arrStdata.push(arri);
 }
+console.log(arrStdata)
 
 // add all arrStdata to historyList inside a div
 for (let i = 0; i < arrStdata.length; i++) {

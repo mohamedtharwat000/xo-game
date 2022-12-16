@@ -223,18 +223,46 @@ function winner() {
 // show popup message function
 function showPopup() {
   setTimeout(function () {
+    const currentDate = new Date
     if (draw === true || xWin === true || oWin === true) {
       popup.classList.remove("hide");
+      const data = JSON.parse(localStorage.getItem("gamesHistory")) || [];
       if (draw === true) {
         document.getElementById("win-message").innerHTML = "draw";
+        data.push({
+          state: "draw",
+          date: formatDate(currentDate)
+        })
+        localStorage.setItem("gamesHistory", JSON.stringify(data))
       } else if (player.letter === "X" && xWin === true) {
         document.getElementById("win-message").innerHTML = "you win";
+        const data = JSON.parse(localStorage.getItem("gamesHistory")) || [];
+        data.push({
+          state: "win",
+          date: formatDate(currentDate)
+        })
+        localStorage.setItem("gamesHistory", JSON.stringify(data))
       } else if (player.letter === "X" && oWin === true) {
         document.getElementById("win-message").innerHTML = "you lose";
+        data.push({
+          state: "lose",
+          date: formatDate(currentDate)
+        })
+        localStorage.setItem("gamesHistory", JSON.stringify(data))
       } else if (player.letter === "O" && oWin === true) {
         document.getElementById("win-message").innerHTML = "you win";
+        data.push({
+          state: "win",
+          date: formatDate(currentDate)
+        })
+        localStorage.setItem("gamesHistory", JSON.stringify(data))
       } else if (player.letter === "O" && xWin === true) {
         document.getElementById("win-message").innerHTML = "you lose";
+        data.push({
+          state: "lose",
+          date: formatDate(currentDate)
+        })
+        localStorage.setItem("gamesHistory", JSON.stringify(data))
       }
     }
   }, 1000);
@@ -370,4 +398,28 @@ function nextMove() {
   }
 
   value = value === "X" ? "O" : "X";
+}
+
+function formatDate(givenDate) {
+  const yyyy = givenDate.getFullYear()
+  let mm = givenDate.getMonth() + 1
+  let dd = givenDate.getDate()
+  if (dd < 10) dd = '0' + dd
+  if (mm < 10) mm = '0' + mm
+  let seconds = givenDate.getSeconds()
+  if (seconds < 10) seconds = '0' + seconds
+  let minutes = givenDate.getMinutes()
+  if (minutes < 10) minutes = '0' + minutes
+  let hours = givenDate.getHours()
+  let amOrPm
+  if (hours >= 12) {
+      hours -= 12
+      amOrPm = "PM"
+  }else{
+      amOrPm = "AM"
+  }
+  if (hours < 10) hours = '0' + hours
+  const formattedDate = `${hours}:${minutes}:${seconds}${amOrPm}, ${dd}/${mm}/${yyyy}`
+
+  return formattedDate
 }

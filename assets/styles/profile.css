@@ -26,10 +26,6 @@ main {
   padding-inline: 5vw;
 }
 
-main > * {
-  min-height: 90vh; /* test value befor adding header (100vh - padding - header) */
-}
-
 main > h1,
 h2 {
   font-size: 2rem;
@@ -228,6 +224,10 @@ h2 {
   gap: 20px;
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.history-list{
+  flex-direction: column-reverse;
 }
 
 .history-list > div {
