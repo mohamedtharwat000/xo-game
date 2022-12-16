@@ -9,15 +9,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* that for the body */
+/* that for the html and body */
+html {
+  height: 100%;
+}
+
 body {
-  height: 100vh;
-  background: linear-gradient(to right,
-      #04214b,
-      #003170,
-      #004298,
-      #0054c1,
-      #1265eb);
+  height: 100%;
+  background: rgba(0, 119, 182, 1);
 }
 
 /* that for the h1 GamePage */
@@ -30,13 +29,13 @@ h1 {
 
 /* that for the div wrapper that contain the container and the reset button */
 .wrapper {
-  margin: 0 0 20px 0;
+  margin-bottom: 28px;
 }
 
 /* the styles of the container  */
 .container {
-  width: 70vmin;
-  height: 70vmin;
+  width: 58vmin;
+  height: 58vmin;
   display: flex;
   flex-wrap: wrap;
   gap: 2vmin;
@@ -46,12 +45,12 @@ h1 {
 /* styles of the buttons inside the container that will be xo later */
 .button-option {
   background: #ffffff;
-  height: 22vmin;
-  width: 22vmin;
+  height: 18vmin;
+  width: 18vmin;
   border: none;
   border-radius: 8px;
   font-size: 12vmin;
-  color: #d161ff;
+  color: rgba(0, 119, 182, 1);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -60,7 +59,7 @@ h1 {
   font-size: 18px;
   padding: 12px 30px;
   border-radius: 8px;
-  background-color: #0a0027;
+  background-color: #0a002788;
   color: #ffffff;
   border: none;
   position: relative;
@@ -71,12 +70,7 @@ h1 {
 
 /* styles of the popup that will appear when game is over */
 .popup {
-  background: linear-gradient(to right,
-      #04214b,
-      #003170,
-      #004298,
-      #0054c1,
-      #1265eb);
+  background: rgba(0, 119, 182, 1);
   height: 100%;
   width: 100%;
   position: absolute;
@@ -93,8 +87,8 @@ h1 {
 #new-game,
 .letter-button {
   font-size: 0.6em;
-  padding: 0.5em 1em;
-  background-color: #0a0027;
+  padding: 1rem 2rem;
+  background-color: #0a002788;
   color: #ffffff;
   border-radius: 0.2em;
   border: none;
@@ -140,4 +134,10 @@ h1 {
   #message {
     font-size: 1.2em;
   }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

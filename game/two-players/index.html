@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-    <head>
-        <meta charset='UTF-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Two Players | XO Online</title>
-        <link rel="stylesheet" href="../../assets/styles/all.min.css">
-        <link rel="stylesheet" href="../../assets/styles/normalize.css">
-        <link rel="stylesheet" href="../../assets/styles/global.css">
-        <link rel='stylesheet' href='../../assets/styles/game.css'>
-        <script defer src='../../assets/scripts/two-players.js'></script>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Tic Tac Toe | Two Players</title>
+    <link rel="icon" href="../../assets/Images/home/tic-tac-toe.png">
+    <link rel="stylesheet" href="../../assets/styles/all.min.css">
+    <link rel="stylesheet" href="../../assets/styles/normalize.css">
+    <link rel="stylesheet" href="../../assets/styles/global.css">
+    <link rel='stylesheet' href='../../assets/styles/game.css'>
+    <script defer src='../../assets/scripts/two-players.js'></script>
     </head>
 
-    <body>
-        <header>
-            <a href="../../" class="logo">XO Online</a>
-            <nav>
-                <ul>
-                    <li>
-                        <div class="icon">
-                            <a href="../../"><i class="fa-solid fa-house"></i></a>
-                        </div>
-                        <a href="../../">Home</a>
-                    </li>
-                    <li>
-                        <div class="icon">
-                            <a href="../../profile/"><i class="fa-solid fa-user"></i></a>
-                        </div>
-                        <a href="../../profile/">Profile</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+<body>
+    <header>
+        <a href="../../" class="logo">XO Online</a>
+        <nav>
+            <ul>
+                <li>
+                    <div class="icon">
+                        <a href="../../"><i class="fa-solid fa-house"></i></a>
+                    </div>
+                    <a href="../../">Home</a>
+                </li>
+                <li>
+                    <div class="icon">
+                        <a href="../../profile/"><i class="fa-solid fa-user"></i></a>
+                    </div>
+                    <a href="../../profile/">Profile</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        <h1 class="gamePage" style="font-size: 3rem;">Two Players</h1>
+    <h1 class="gamePage" style="font-size: 2rem;">Two Players</h1>
 
-        <!-- wrapper conatin the container and the reset button -->
-        <div class="wrapper">
+    <!-- wrapper conatin the container and the reset button -->
+    <div class="wrapper">
 
-            <!-- container contain the game board -->
-            <div class="container">
+        <!-- container contain the game board -->
+        <div class="container">
 
-                <!-- game board with 9 buttons -->
-                <button class="button-option" data-row="1" data-column="1"></button>
-                <button class="button-option" data-row="1" data-column="2"></button>
-                <button class="button-option" data-row="1" data-column="3"></button>
-                <button class="button-option" data-row="2" data-column="1"></button>
-                <button class="button-option" data-row="2" data-column="2"></button>
-                <button class="button-option" data-row="2" data-column="3"></button>
-                <button class="button-option" data-row="3" data-column="1"></button>
-                <button class="button-option" data-row="3" data-column="2"></button>
-                <button class="button-option" data-row="3" data-column="3"></button>
+            <!-- game board with 9 buttons -->
+            <button class="button-option" data-row="1" data-column="1" data-priority="1"></button>
+            <button class="button-option" data-row="1" data-column="2" data-priority="1"></button>
+            <button class="button-option" data-row="1" data-column="3" data-priority="1"></button>
+            <button class="button-option" data-row="2" data-column="1" data-priority="1"></button>
+            <button class="button-option" data-row="2" data-column="2" data-priority="2"></button>
+            <button class="button-option" data-row="2" data-column="3" data-priority="1"></button>
+            <button class="button-option" data-row="3" data-column="1" data-priority="1"></button>
+            <button class="button-option" data-row="3" data-column="2" data-priority="1"></button>
+            <button class="button-option" data-row="3" data-column="3" data-priority="1"></button>
             </div>
 
-            <!-- reset button -->
-            <button id="restart">Restart</button>
+        <!-- reset button -->
+        <button id="restart">Restart</button>
 
-            <!-- that appear to choose the O or X  -->
-            <div class="popup choose-letter">
-                <p id="message" style="font-size: 3rem;">Choose your Letter</p>
-                <div class="letter-buttons">
-                    <button class="letter-button">X</button>
-                    <button class="letter-button">O</button>
-                </div>
-            </div>
-
-            <!-- that appear when lose or win to can play another game  -->
-            <div id="who-win" class="popup hide">
-                <p id="win-message"></p>
-                <button id="new-game">New Game</button>
+        <!-- that appear to choose the O or X  -->
+        <div class="popup choose-letter">
+            <p id="message" style="font-size: 3rem;">Choose your Letter</p>
+            <div class="letter-buttons">
+                <button class="letter-button">X</button>
+                <button class="letter-button">O</button>
             </div>
         </div>
 
-        
+        <!-- that appear when lose or win to can play another game  -->
+        <div id="who-win" class="popup hide">
+            <p id="win-message"></p>
+            <button id="new-game">New Game</button>
+        </div>
+        </div>
 
-        <footer>
-            <p>Made With <span><i class="fa-solid fa-heart"></i></span> By Ahmed Zena, Mohamed Tharwat and Muhammad Shoaib</p>
+
+
+    <footer>
+        <p>Made With <span><i class="fa-solid fa-heart"></i></span> By Ahmed Zena, Mohamed Tharwat and Muhammad Shoaib
+        </p>
         </footer>
-    </body>
+        </body>
 
 </html>

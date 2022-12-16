@@ -1,20 +1,12 @@
 body {
-    height: 100vh;
-    background: linear-gradient(to right,
-            #04214b,
-            #003170,
-            #004298,
-            #0054c1,
-            #1265eb);
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(0, 119, 182, 1);
 }
 
 .container {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 3rem;
-    height: 100vh;
+  text-align: center;
+  padding-top: 2rem;
+  min-height: 70vh;
 }
 
 div.row {
@@ -33,38 +25,32 @@ div.single {
     line-height: 8rem;
     font-family: sans-serif;
     font-size: 5rem;
-    color: #d161ff;
+    color: rgba(0, 119, 182, 1);
     cursor: pointer;
-    -o-border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
     border-radius: 0.5rem;
 }
 
 div#infodisplay {
-    height: 96px;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #fff;
-    padding-top: 5rem;
+    padding: 2rem 0;
+}
+
+div.playagain {
+  padding: 1rem 0;
 }
 
 div.playerchoice button {
     display: inline-block;
-    width: 120px;
-    height: 100px;
+    padding: 1rem 2rem;
     font-size: 3rem;
-    background: #0a0027;
+    background: #0a002788;
     color: #fff;
     cursor: pointer;
     outline: none;
     border: none;
-    -o-border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
     border-radius: 0.5rem;
-    margin: 0 0.9rem;
+    margin: 0 1rem;
 }
 
 div.playagain button {
@@ -72,14 +58,10 @@ div.playagain button {
     height: 64px;
     font-size: 2rem;
     font-weight: bold;
-    background: #04214b;
+    background: #0a002788;
     color: #fff;
     border: none;
     outline: none;
-    -o-border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
 }
@@ -100,16 +82,16 @@ div.playagain button {
     color: white;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     div.single {
-        height: 96px;
-        width: 96px;
-        font-size: 96px;
-        line-height: 96px;
+        height: 80px;
+        width: 80px;
+        font-size: 80px;
+        line-height: 80px;
     }
 
     div#infodisplay {
-        height: 96px;
+        height: 80px;
         font-size: 1.5rem;
         color: #fff;
     }
@@ -120,34 +102,12 @@ div.playagain button {
         height: 90px;
         font-size: 3rem;
         font-weight: bold;
-        background: #04214b;
         color: #fff;
         cursor: pointer;
         outline: none;
         border: none;
-        -o-border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
         border-radius: 0.5rem;
         margin: 0 0.9rem;
         margin-bottom: 5rem;
-    }
-}
-
-@media (max-width: 360px) {
-    div.single {
-        height: 64px;
-        width: 64px;
-        font-size: 64px;
-        line-height: 64px;
-    }
-}
-
-@media(min-width: 401px) {
-    footer {
-        position: absolute;
-        bottom: -500px;
-        width: 100%;
     }
 }
