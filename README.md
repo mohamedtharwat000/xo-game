@@ -1,3 +1,3 @@
-# xo-game-t4
+# xo-game
 
-https://ahmed0saber.github.io/xo-game-t4/
+https://mohamedtharwat000.github.io/xo-game/
