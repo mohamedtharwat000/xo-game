@@ -346,7 +346,8 @@ function nextMove() {
   }
 
   buttonsArr.sort(function (a, b) {
-    return Number(b.dataset.priority) - Number(a.dataset.priority);
+    // return Number(b.dataset.priority) - Number(a.dataset.priority);
+    return 0.5 - Math.random();
   });
 
   const emptyButtonsArr = buttonsArr.filter(function (value, index, arr) {
