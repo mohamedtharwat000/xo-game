@@ -1,12 +1,11 @@
 body {
-  font-family: 'Poppins', sans-serif;
   background: rgba(0, 119, 182, 1);
 }
 
 .container {
   text-align: center;
   padding-top: 2rem;
-  min-height: 70vh;
+  min-height: calc(100vh - 190px);
 }
 
 div.row {
