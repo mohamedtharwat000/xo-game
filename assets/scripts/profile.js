@@ -60,6 +60,28 @@ saveEditProfile.addEventListener("click", (e) => {
     };
     img.src = URL.createObjectURL(uploadProfilePic.files[0]); // set src to blob url
   }
+  profilePic.addEventListener("load", function () {
+    var imgCanvas = document.createElement("canvas"),
+      imgContext = imgCanvas.getContext("2d");
+
+    // Make sure canvas is as big as the picture
+    imgCanvas.width = profilePic.width;
+    imgCanvas.height = profilePic.height;
+
+    // Draw image into canvas element
+    imgContext.drawImage(profilePic, 0, 0, profilePic.width, profilePic.height);
+
+    // Get canvas contents as a data URL
+    var imgAsDataURL = imgCanvas.toDataURL("image/png");
+
+    // Save image into localStorage
+    try {
+      localStorage.setItem("profilePic", imgAsDataURL);
+      //   console.log("Profile picture saved.");
+    } catch (e) {
+      console.log("Storage failed: " + e);
+    }
+  });
 });
 cancelEditProfile.addEventListener("click", (e) => {
   divEditdata.classList.toggle("hidden");
@@ -120,7 +142,7 @@ for (let i = 0; i < getRecentGamesData().length; i++) {
   arri = [getRecentGamesData()[i].state, getRecentGamesData()[i].date];
   arrStdata.push(arri);
 }
-console.log(arrStdata)
+console.log(arrStdata);
 
 // add all arrStdata to historyList inside a div
 for (let i = 0; i < arrStdata.length; i++) {
@@ -222,6 +244,9 @@ resetBtn.addEventListener("click", () => {
 // get data from local storage  and show it in profile.html
 // make that with document because it's faster than window
 document.addEventListener("DOMContentLoaded", function () {
+  // log profilePic
+  console.log(profilePic);
+
   // get profilePic from local storage
   let profilePicData = localStorage.getItem("profilePic");
   if (profilePicData) {
