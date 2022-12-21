@@ -6,7 +6,7 @@
   position: relative;
   border: none;
   outline: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* that for the html and body */
@@ -24,7 +24,7 @@ h1 {
   font-size: 2rem;
   color: #fff;
   text-align: center;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 /* that for the div wrapper that contain the container and the reset button */
@@ -114,26 +114,6 @@ h1 {
 
 .popup.hide {
   display: none;
-}
-
-/* for responsive */
-@media screen and (max-width: 600px) {
-  .button-option {
-    font-size: 16vmin;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    margin-top: 5rem;
-  }
-
-  .popup {
-    font-size: 16vmin;
-  }
-
-  #message {
-    font-size: 1.2em;
-  }
 }
 
 footer {
