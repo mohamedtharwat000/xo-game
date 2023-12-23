@@ -5,22 +5,8 @@ This is a web-based Tic Tac Toe game application with multiple gameplay modes an
 # live preview
 [Tic Tac Toe Game](https://mohamedtharwat000.github.io/xo-game/)
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Game Modes](#game-modes)
-  - [Single Player Easy](#single-player-easy)
-  - [Single Player Hard](#single-player-hard)
-  - [Two Players](#two-players)
-- [Profile Page](#profile-page)
-  - [Edit Profile](#edit-profile)
-  - [Reset Profile](#reset-profile)
-  - [Profile Statistics](#profile-statistics)
-  - [Recent Games History](#recent-games-history)
-- [About Page](#about-page)  
-- [Technologies](#technologies)
-- [Setup](#setup)
-- [Credits](#credits)
+**screenshots**
+![](https://github.com/mohamedtharwat000/xo-game/blob/main/assets/Images/screenshot.png)
 
 ## Overview
 
